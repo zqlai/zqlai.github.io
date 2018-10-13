@@ -38,9 +38,9 @@ DEFAULT_PAGINATION = 10
 # themes
 #THEME = 'pelican-themes/pelican-elegant'
 #THEME = 'simple'
-THEME = 'notmyidea'
+#THEME = 'notmyidea'
 #THEME = '/root/packages/pelican-themes.git/pelican-bootstrap3'
-#THEME = 'pelican-bootstrap3'
+THEME = 'themes/pelican-themes/pelican-bootstrap3'
 
 # for pelican-bootstrap3 theme
 JINJA_ENVIRONMENT = {'extensions': ['jinja2.ext.i18n']}
