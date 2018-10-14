@@ -3,16 +3,21 @@
 from __future__ import unicode_literals
 
 AUTHOR = 'zqlai'
-SITENAME = 'Keep simple but NOT stupid'
-SITEURL = ''
+SITENAME = 'QBlog'
+#SITELOGO = 'images/my_site_logo.png'
+#SITENAME = 'Keep simple but NOT stupid'
+SITEURL = 'https://zqlai.github.io'
 ABOUT_ME = 'A simple guy!'
-
+#AVATAR = 'images/avatar.png'
 PATH = 'content'
-
-TIMEZONE = 'Hongkong'
+TIMEZONE = 'Asia/Shanghai'
 DEFAULT_DATE = 'fs'
-
 DEFAULT_LANG = 'en'
+DATE_FORMATS = {
+    'en': '%a, %d %b %Y',
+}
+
+CC_LICENSE = 'CC-BY-NC-SA'
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
@@ -28,8 +33,19 @@ LINKS = (('Pelican', 'http://getpelican.com/'),
          )
 
 # Social widget
-SOCIAL = (('zhihu(知乎)', 'https://www.zhihu.com/people/lai-zq/activities'),
+SOCIAL = (('Zhihu(知乎)', 'https://www.zhihu.com/people/lai-zq/activities'),
           ('Google Scholar', 'https://scholar.google.com/citations?user=m9_qnBIAAAAJ&hl=en'),)
+
+# github
+GITHUB_USER = 'zqlai'
+GITHUB_REPO_COUNT = 3
+GITHUB_SKIP_FORK = 'false'
+GITHUB_SHOW_USER_LINK = 'false'
+
+# google stats
+GOOGLE_ANALYTICS = 'UA-127465699-1'
+
+
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
@@ -41,7 +57,13 @@ SOCIAL = (('zhihu(知乎)', 'https://www.zhihu.com/people/lai-zq/activities'),
 #THEME = 'notmyidea'
 #THEME = '/root/packages/pelican-themes.git/pelican-bootstrap3'
 THEME = 'themes/pelican-themes/pelican-bootstrap3'
+# choose the boostrap theme on https://bootswatch.com/
 BOOTSTRAP_THEME = 'flatly'
+BOOTSTRAP_NAVBAR_INVERSE = True # seems just changing the navbar color
+
+
+PYGMENTS_STYLE = 'native'
+#PYGMENTS_STYLE = 'monokai'
 
 # for pelican-bootstrap3 theme
 JINJA_ENVIRONMENT = {'extensions': ['jinja2.ext.i18n']}
@@ -59,17 +81,38 @@ PLUGINS = [
     'tipue_search',
     'related_posts',
     'tag_cloud',
+    'sitemap',
 ]
 
+# sitemap
+SITEMAP = {
+    "format": "xml",
+    "priorities": {
+        "articles": 0.7,
+        "indexes": 0.5,
+        "pages": 0.3,
+    },
+    "changefreqs": {
+        "articles": "monthly",
+        "indexes": "daily",
+        "pages": "monthly",
+    }
+}
 
 # rendering
 TYPOGRIFY = True
+USE_PAGER = True
 DEFAULT_PAGINATION = 5
-TAG_CLOUD_MAX_ITEMS = 10
+
 DISPLAY_CATEGORIES_ON_SIDEBAR = True
-DISPLAY_CATEGORIES_ON_MENU = False
+DISPLAY_CATEGORIES_ON_MENU = True
 DISPLAY_PAGES_ON_MENU = True
+
 DISPLAY_TAGS_ON_SIDEBAR = True
+TAG_CLOUD_MAX_ITEMS = 10
+DISPLAY_RECENT_POSTS_ON_SIDEBAR = True
+RECENT_POST_COUNT = 5
+
 DIRECT_TEMPLATES = ('index', 'categories', 'authors', 'search', 'archives')
 
 # ARTICLE INFO
@@ -79,6 +122,8 @@ SHOW_ARTICLE_AUTHOR = True
 SHOW_ARTICLE_CATEGORY = True
 SHOW_DATE_MODIFIED =  True
 DEFAULT_CATEGORY = 'misc'
+## addthis
+ADDTHIS_PROFILE = 'ra-5bc35adaf039c73e' #my ID on www.addthis.com
 
 # url settings
 ARTICLE_URL = 'blog/{slug}.html'
