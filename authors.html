@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>Authors - Keep simple but NOT stupid</title>
+    <title>Authors - QBlog</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -13,11 +13,11 @@
         <meta name="author" content="zqlai" />
 
     <!-- Open Graph tags -->
-        <meta property="og:site_name" content="Keep simple but NOT stupid" />
+        <meta property="og:site_name" content="QBlog" />
         <meta property="og:type" content="website"/>
-        <meta property="og:title" content="Keep simple but NOT stupid"/>
+        <meta property="og:title" content="QBlog"/>
         <meta property="og:url" content=""/>
-        <meta property="og:description" content="Keep simple but NOT stupid"/>
+        <meta property="og:description" content="QBlog"/>
 
 
 
@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
 
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
-              title="Keep simple but NOT stupid ATOM Feed"/>
+              title="QBlog ATOM Feed"/>
 
 
 
@@ -39,7 +39,7 @@
 </head>
 <body>
 
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -49,16 +49,25 @@
                 <span class="icon-bar"></span>
             </button>
             <a href="/" class="navbar-brand">
-Keep simple but NOT stupid            </a>
+QBlog            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
                          <li><a href="/about.html">
                              About
                           </a></li>
-                         <li><a href="/contact-me.html">
-                             contact&nbsp;me
+                         <li><a href="/contact.html">
+                             Contact
                           </a></li>
+                        <li >
+                            <a href="/category/django.html">Django</a>
+                        </li>
+                        <li >
+                            <a href="/category/misc.html">Misc</a>
+                        </li>
+                        <li >
+                            <a href="/category/python.html">Python</a>
+                        </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li><span>
@@ -80,10 +89,10 @@ Keep simple but NOT stupid            </a>
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
-  <h1>Authors on Keep simple but NOT stupid</h1>
-        <li><a href="/author/alexis-metaireau.html">Alexis Metaireau</a> (2)</li>
-        <li><a href="/author/conan-doyle.html">Conan Doyle</a> (2)</li>
-        <li><a href="/author/zqlai.html">zqlai</a> (1)</li>
+  <h1>Authors on QBlog</h1>
+        <li><a href="/author/alexis-metaireau.html">Alexis Metaireau</a> (1)</li>
+        <li><a href="/author/conan-doyle.html">Conan Doyle</a> (1)</li>
+        <li><a href="/author/zqlai.html">zqlai</a> (2)</li>
         </div>
         <div class="col-sm-3" id="sidebar">
             <aside>
@@ -100,11 +109,22 @@ Keep simple but NOT stupid            </a>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
   <ul class="list-group" id="social">
-    <li class="list-group-item"><a href="https://www.zhihu.com/people/lai-zq/activities"><i class="fa fa-zhihu(知乎)-square fa-lg"></i> zhihu(知乎)</a></li>
+    <li class="list-group-item"><a href="https://www.zhihu.com/people/lai-zq/activities"><i class="fa fa-zhihu(知乎)-square fa-lg"></i> Zhihu(知乎)</a></li>
     <li class="list-group-item"><a href="https://scholar.google.com/citations?user=m9_qnBIAAAAJ&hl=en"><i class="fa fa-google-scholar-square fa-lg"></i> Google Scholar</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->
+
+<!-- Sidebar/Recent Posts -->
+<li class="list-group-item">
+  <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
+  <ul class="list-group" id="recentposts">
+    <li class="list-group-item"><a href="/blog/my second post.html">how to set up django on ubuntu&nbsp;18.04</a></li>
+    <li class="list-group-item"><a href="/blog/misc.html">misc</a></li>
+    <li class="list-group-item"><a href="/blog/my-super-post.html">My super&nbsp;title</a></li>
+  </ul>
+</li>
+<!-- End Sidebar/Recent Posts -->
 
 <!-- Sidebar/Categories -->
 <li class="list-group-item">
@@ -128,10 +148,10 @@ Keep simple but NOT stupid            </a>
   <a href="/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
   <ul class="list-group " id="tags">
     <li class="list-group-item tag-1">
-      <a href="/tag/pelican.html">pelican</a>
+      <a href="/tag/publishing.html">publishing</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="/tag/publishing.html">publishing</a>
+      <a href="/tag/pelican.html">pelican</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="/tag/photo.html">photo</a>
@@ -142,6 +162,16 @@ Keep simple but NOT stupid            </a>
   </ul>
 </li>
 <!-- End Sidebar/Tag Cloud -->
+
+<!-- Sidebar/Github -->
+<li class="list-group-item">
+  <h4><i class="fa fa-github fa-lg"></i><span class="icon-label">GitHub Repos</span></h4>
+  <div id="gh_repos">
+    <p class="list-group-item">Status updating...</p>
+  </div>
+  <a href="https://github.com/zqlai">@zqlai</a> on GitHub
+</li>
+<!-- End Sidebar/Github -->
 
 <!-- Sidebar/Links -->
 <li class="list-group-item">
@@ -174,7 +204,11 @@ Keep simple but NOT stupid            </a>
          <div class="col-xs-10">&copy; 2018 zqlai
             &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
-            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>                <p><small>  <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
          <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
       </div>
    </div>
@@ -188,6 +222,45 @@ Keep simple but NOT stupid            </a>
 <script src="/theme/js/respond.min.js"></script>
 
 
+
+<!-- GitHub JS Code -->
+<script type="text/javascript">
+$(document).ready(function () {
+  if (!window.jXHR) {
+    var jxhr = document.createElement('script');
+    jxhr.type = 'text/javascript';
+    jxhr.src = '/theme/js/jXHR.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(jxhr, s);
+  }
+
+  github.showRepos({
+    user: 'zqlai',
+    count: 3,
+    skip_forks: true,
+    target: '#gh_repos'
+  });
+});
+</script>
+<script src="/theme/js/github.js" type="text/javascript"></script>
+<!-- End GitHub JS Code -->
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-127465699-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- End Google Analytics Code -->
 
 
 </body>
