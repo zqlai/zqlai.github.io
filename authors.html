@@ -22,10 +22,12 @@
 
 
     <!-- Bootstrap -->
-        <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css"/>
+        <link rel="stylesheet" href="/theme/css/bootstrap.flatly.min.css" type="text/css"/>
     <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="/theme/css/pygments/native.css" rel="stylesheet">
+    <link href="/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
+        <link href="/theme/css/typogrify.css" rel="stylesheet">
     <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
 
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
@@ -51,11 +53,20 @@ Keep simple but NOT stupid            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                        <li >
-                            <a href="/category/python.html">Python</a>
-                        </li>
+                         <li><a href="/about.html">
+                             About
+                          </a></li>
+                         <li><a href="/contact-me.html">
+                             contact&nbsp;me
+                          </a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+              <li><span>
+                <form class="navbar-search" action="/search.html">
+                  <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input" required>
+                </form></span>
+              </li>
+              <li><a href="/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -70,12 +81,18 @@ Keep simple but NOT stupid            </a>
     <div class="row">
         <div class="col-sm-9">
   <h1>Authors on Keep simple but NOT stupid</h1>
-        <li><a href="/author/alexis-metaireau.html">Alexis Metaireau</a> (1)</li>
-        <li><a href="/author/conan-doyle.html">Conan Doyle</a> (1)</li>
+        <li><a href="/author/alexis-metaireau.html">Alexis Metaireau</a> (2)</li>
+        <li><a href="/author/conan-doyle.html">Conan Doyle</a> (2)</li>
+        <li><a href="/author/zqlai.html">zqlai</a> (1)</li>
         </div>
         <div class="col-sm-3" id="sidebar">
             <aside>
-<!-- Sidebar -->
+<div id="aboutme">
+    <p>
+      <strong>About zqlai</strong><br/>
+        A simple guy!
+    </p>
+</div><!-- Sidebar -->
 <section class="well well-sm">
   <ul class="list-group list-group-flush">
 
@@ -83,11 +100,48 @@ Keep simple but NOT stupid            </a>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
   <ul class="list-group" id="social">
-    <li class="list-group-item"><a href="#"><i class="fa fa-you-can-add-links-in-your-config-file-square fa-lg"></i> You can add links in your config file</a></li>
-    <li class="list-group-item"><a href="#"><i class="fa fa-another-social-link-square fa-lg"></i> Another social link</a></li>
+    <li class="list-group-item"><a href="https://www.zhihu.com/people/lai-zq/activities"><i class="fa fa-zhihu(知乎)-square fa-lg"></i> zhihu(知乎)</a></li>
+    <li class="list-group-item"><a href="https://scholar.google.com/citations?user=m9_qnBIAAAAJ&hl=en"><i class="fa fa-google-scholar-square fa-lg"></i> Google Scholar</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->
+
+<!-- Sidebar/Categories -->
+<li class="list-group-item">
+  <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Categories</span></h4>
+  <ul class="list-group" id="categories">
+    <li class="list-group-item">
+      <a href="/category/django.html"><i class="fa fa-folder-open fa-lg"></i>django</a>
+    </li>
+    <li class="list-group-item">
+      <a href="/category/misc.html"><i class="fa fa-folder-open fa-lg"></i>misc</a>
+    </li>
+    <li class="list-group-item">
+      <a href="/category/python.html"><i class="fa fa-folder-open fa-lg"></i>Python</a>
+    </li>
+  </ul>
+</li>
+<!-- End Sidebar/Categories -->
+
+<!-- Sidebar/Tag Cloud -->
+<li class="list-group-item">
+  <a href="/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+  <ul class="list-group " id="tags">
+    <li class="list-group-item tag-1">
+      <a href="/tag/pelican.html">pelican</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="/tag/publishing.html">publishing</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/photo.html">photo</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/life.html">life</a>
+    </li>
+  </ul>
+</li>
+<!-- End Sidebar/Tag Cloud -->
 
 <!-- Sidebar/Links -->
 <li class="list-group-item">
@@ -101,9 +155,6 @@ Keep simple but NOT stupid            </a>
     </li>
     <li class="list-group-item">
       <a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a>
-    </li>
-    <li class="list-group-item">
-      <a href="#" target="_blank">You can modify those links in your config file</a>
     </li>
   </ul>
 </li>
@@ -120,7 +171,7 @@ Keep simple but NOT stupid            </a>
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2010 zqlai
+         <div class="col-xs-10">&copy; 2018 zqlai
             &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
