@@ -84,6 +84,10 @@ PLUGINS = [
     'sitemap',
 ]
 
+# tag_cloud
+TAG_CLOUD_SORTING = 'alphabetically' #  Valid values: random, alphabetically, alphabetically-rev, size and size-rev
+TAG_CLOUD_BADGE = True
+
 # sitemap
 SITEMAP = {
     "format": "xml",
