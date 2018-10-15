@@ -27,7 +27,74 @@
 &lt;li&gt;item1&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;**&amp;nbsp;item2&lt;/p&gt;
-&lt;p&gt;***&amp;nbsp;item3&lt;/p&gt;</content><category term="pelican"></category><category term="publishing"></category></entry><entry><title>misc</title><link href="/blog/misc.html" rel="alternate"></link><published>2018-10-14T22:44:14+08:00</published><updated>2018-10-14T22:44:14+08:00</updated><author><name>zqlai</name></author><id>tag:None,2018-10-14:/blog/misc.html</id><summary type="html">&lt;p&gt;Short version for index and&amp;nbsp;feeds&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is the content of my super blog&amp;nbsp;post.&lt;/p&gt;</content><category term="life"></category><category term="photo"></category></entry><entry><title>My super title</title><link href="/blog/my-super-post.html" rel="alternate"></link><published>2018-10-14T21:54:13+08:00</published><updated>2018-10-14T21:54:13+08:00</updated><author><name>Alexis Metaireau</name></author><id>tag:None,2018-10-14:/blog/my-super-post.html</id><summary type="html">&lt;p&gt;Short version for index and&amp;nbsp;feeds&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is the content of my super blog&amp;nbsp;post.&lt;/p&gt;
+&lt;p&gt;***&amp;nbsp;item3&lt;/p&gt;</content><category term="pelican"></category><category term="publishing"></category></entry><entry><title>horovod on TH-1A works with mnist example</title><link href="/blog/horovod%20works.html" rel="alternate"></link><published>2018-10-15T18:01:17+08:00</published><updated>2018-10-15T18:01:17+08:00</updated><author><name>zqlai</name></author><id>tag:None,2018-10-15:/blog/horovod works.html</id><summary type="html">&lt;h2&gt;step to launch the mnist training&amp;nbsp;task&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;1.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;login the th-es-ln0
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;2.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;source&lt;/span&gt; zqlai/.bashrc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;3.allocate 2 &lt;span class="caps"&gt;GPU&lt;/span&gt; nodes with 4&amp;nbsp;processes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;yhalloc -N2 -n4 -pTH_GPU
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;4.check the allocated job and responsive&amp;nbsp;nodes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;yhq
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;5.load the task using&amp;nbsp;mpirun&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; horovod
+mpirun -np &lt;span class="m"&gt;4&lt;/span&gt; -H gn6,gn7 …&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;h2&gt;step to launch the mnist training&amp;nbsp;task&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;1.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;login the th-es-ln0
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;2.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;source&lt;/span&gt; zqlai/.bashrc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;3.allocate 2 &lt;span class="caps"&gt;GPU&lt;/span&gt; nodes with 4&amp;nbsp;processes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;yhalloc -N2 -n4 -pTH_GPU
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;4.check the allocated job and responsive&amp;nbsp;nodes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;yhq
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;5.load the task using&amp;nbsp;mpirun&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; horovod
+mpirun -np &lt;span class="m"&gt;4&lt;/span&gt; -H gn6,gn7 python examples/tensorflow_mnist.py
+&lt;/pre&gt;&lt;/div&gt;</content><category term="horovod TH-1A"></category></entry><entry><title>My super title</title><link href="/blog/my-super-title.html" rel="alternate"></link><published>2018-10-15T10:40:02+08:00</published><updated>2018-10-15T10:40:02+08:00</updated><author><name>Alexis Metaireau</name></author><id>tag:None,2018-10-15:/blog/my-super-title.html</id><summary type="html">&lt;p&gt;Short version for index and&amp;nbsp;feeds&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is the content of my super blog&amp;nbsp;post.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;t&lt;/span&gt;
 
 &lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strftime&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -46,4 +113,4 @@
 &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
 
 &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</content><category term="pelican"></category><category term="publishing"></category></entry></feed>
+&lt;/pre&gt;&lt;/div&gt;</content><category term="pelican"></category><category term="publishing"></category></entry><entry><title>misc</title><link href="/blog/misc.html" rel="alternate"></link><published>2018-10-15T10:39:22+08:00</published><updated>2018-10-15T10:39:22+08:00</updated><author><name>zqlai</name></author><id>tag:None,2018-10-15:/blog/misc.html</id><summary type="html">&lt;p&gt;Short version for index and&amp;nbsp;feeds&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is the content of my super blog&amp;nbsp;post.&lt;/p&gt;</content><category term="life"></category><category term="photo"></category></entry></feed>
