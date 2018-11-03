@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>publishing - QBlog</title>
+    <title>Migrate - QBlog</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -11,7 +11,7 @@
 
 
     <meta name="author" content="zqlai" />
-    <meta name="keywords" content="publishing" />
+    <meta name="keywords" content="Migrate" />
 
     <!-- Open Graph tags -->
         <meta property="og:site_name" content="QBlog" />
@@ -97,62 +97,53 @@ QBlog            </a>
     <div class="row">
         <div class="col-sm-9">
             <article>
-                <h2><a href="/blog/my second post.html">how to set up django on ubuntu&nbsp;18.04</a></h2>
+                <h2><a href="/blog/migrate-problem-when-replace-the-dbsqlite3-file.html">Migrate problem when replace the db.sqlite3&nbsp;file</a></h2>
                     <div class="well well-sm">
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2018-12-06T21:00:00+08:00"> Thu, 06 Dec 2018</time>
+        <i class="fa fa-calendar"></i><time datetime="2018-11-03T22:02:24.035809+08:00"> Sat, 03 Nov 2018</time>
     </span>
-          <span class="label label-default">Modified</span>
-            <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2018-12-05T19:30:00+08:00"> Wed, 05 Dec 2018</time>
-            </span>
 
 
             <span class="label label-default">By</span>
             <a href="/author/zqlai.html"><i class="fa fa-user"></i> zqlai</a>
 
         <span class="label label-default">Category</span>
-        <a href="/category/django.html">django</a>
+        <a href="/category/django.html">Django</a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="/tag/pelican.html">pelican</a>
+	<a href="/tag/django.html">Django</a>
         /
-	<a href="/tag/publishing.html">publishing</a>
+	<a href="/tag/migrate.html">Migrate</a>
     
 </footer><!-- /.post-info -->                    </div>
-                <div class="summary"><p>summary django setting&nbsp;up</p>
-                    <a class="btn btn-default btn-xs" href="/blog/my second post.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/blog/my-super-title.html">My super&nbsp;title</a></h2>
-                    <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2018-10-15T10:40:02.694063+08:00"> Mon, 15 Oct 2018</time>
-    </span>
+                <div class="summary"><h1>problem</h1>
+<ul>
+<li>从其他开发人员拷贝一个db.sqlite3文件，覆盖本地文件</li>
+</ul>
+<div class="highlight"><pre><span></span>python manage.py makemigrations
+</pre></div>
 
 
-            <span class="label label-default">By</span>
-            <a href="/author/alexis-metaireau.html"><i class="fa fa-user"></i> Alexis Metaireau</a>
-
-        <span class="label label-default">Category</span>
-        <a href="/category/python.html">Python</a>
+<p>报错</p>
+<div class="highlight"><pre><span></span>sqlite3.OperationalError: table &quot;django_admin_log&quot; already exists
+</pre></div>
 
 
-<span class="label label-default">Tags</span>
-	<a href="/tag/pelican.html">pelican</a>
-        /
-	<a href="/tag/publishing.html">publishing</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                <div class="summary"><p>Short version for index and&nbsp;feeds</p>
-                    <a class="btn btn-default btn-xs" href="/blog/my-super-title.html">more ...</a>
+<p>估计是靠过来的db.sqlite3文件中已经有django_admin_log表，但是django_migrations&nbsp;表中没有记录本地的migration脚本，所以导致再建一次表，报错</p>
+<div class="highlight"><pre><span></span>python manage.py migrate easydict
+</pre></div>
+
+
+<p>单独迁移easydict，希望不会再迁移其他app，但还是报错</p>
+<div class="highlight"><pre><span></span>root@X250:~/118/yiji.git# python manage.py migrate easydict
+Operations to perform:
+Apply all migrations: easydict
+Running migrations:
+Applying auth …</pre></div>
+                    <a class="btn btn-default btn-xs" href="/blog/migrate-problem-when-replace-the-dbsqlite3-file.html">more ...</a>
                 </div>
             </article>
             <hr/>
@@ -183,8 +174,7 @@ QBlog            </a>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
   <ul class="list-group" id="recentposts">
-    <li class="list-group-item"><a href="/blog/my second post.html">how to set up django on ubuntu&nbsp;18.04</a></li>
-    <li class="list-group-item"><a href="/blog/my-super-title.html">My super&nbsp;title</a></li>
+    <li class="list-group-item"><a href="/blog/migrate-problem-when-replace-the-dbsqlite3-file.html">Migrate problem when replace the db.sqlite3&nbsp;file</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Recent Posts -->

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>See the scence at 5:00am again - QBlog</title>
+    <title>Migrate problem when replace the db.sqlite3 file - QBlog</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,21 +9,21 @@
 
 
 
-<link rel="canonical" href="/blog/see-the-scence-at-500am-again.html">
+<link rel="canonical" href="/blog/migrate-problem-when-replace-the-dbsqlite3-file.html">
 
         <meta name="author" content="zqlai" />
-        <meta name="keywords" content="thought,fighting" />
-        <meta name="description" content="Went to bed at 5:00am last night or, this morning Saw the dawn scene of Changsha again alone, not lonely tired, but exited fell into sleep with hope and prospect with more responsibilty for the engels by my side" />
+        <meta name="keywords" content="Django,Migrate" />
+        <meta name="description" content="problem 从其他开发人员拷贝一个db.sqlite3文件，覆盖本地文件 python manage.py makemigrations 报错 sqlite3.OperationalError: table &#34;django_admin_log&#34; already exists 估计是靠过来的db.sqlite3文件中已经有django_admin_log表，但是django_migrations 表中没有记录本地的migration脚本，所以导致再建一次表，报错 python manage.py migrate easydict 单独迁移easydict，希望不会再迁移其他app，但还是报错 root@X250:~/118/yiji.git# python manage.py migrate easydict Operations to perform: Apply all migrations: easydict Running migrations: Applying auth …" />
 
         <meta property="og:site_name" content="QBlog" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="See the scence at 5:00am again"/>
-        <meta property="og:url" content="/blog/see-the-scence-at-500am-again.html"/>
-        <meta property="og:description" content="Went to bed at 5:00am last night or, this morning Saw the dawn scene of Changsha again alone, not lonely tired, but exited fell into sleep with hope and prospect with more responsibilty for the engels by my side"/>
-        <meta property="article:published_time" content="2018-10-18" />
-            <meta property="article:section" content="life" />
-            <meta property="article:tag" content="thought" />
-            <meta property="article:tag" content="fighting" />
+        <meta property="og:title" content="Migrate problem when replace the db.sqlite3 file"/>
+        <meta property="og:url" content="/blog/migrate-problem-when-replace-the-dbsqlite3-file.html"/>
+        <meta property="og:description" content="problem 从其他开发人员拷贝一个db.sqlite3文件，覆盖本地文件 python manage.py makemigrations 报错 sqlite3.OperationalError: table &#34;django_admin_log&#34; already exists 估计是靠过来的db.sqlite3文件中已经有django_admin_log表，但是django_migrations 表中没有记录本地的migration脚本，所以导致再建一次表，报错 python manage.py migrate easydict 单独迁移easydict，希望不会再迁移其他app，但还是报错 root@X250:~/118/yiji.git# python manage.py migrate easydict Operations to perform: Apply all migrations: easydict Running migrations: Applying auth …"/>
+        <meta property="article:published_time" content="2018-11-03" />
+            <meta property="article:section" content="Django" />
+            <meta property="article:tag" content="Django" />
+            <meta property="article:tag" content="Migrate" />
             <meta property="article:author" content="zqlai" />
 
 
@@ -42,8 +42,8 @@
 
 
 
-        <link href="/feeds/life.atom.xml" type="application/atom+xml" rel="alternate"
-              title="QBlog life ATOM Feed"/>
+        <link href="/feeds/django.atom.xml" type="application/atom+xml" rel="alternate"
+              title="QBlog Django ATOM Feed"/>
 
 </head>
 <body>
@@ -68,10 +68,10 @@ QBlog            </a>
                          <li><a href="/contact.html">
                              Contact
                           </a></li>
-                        <li >
+                        <li class="active">
                             <a href="/category/django.html">Django</a>
                         </li>
-                        <li class="active">
+                        <li >
                             <a href="/category/life.html">Life</a>
                         </li>
                         <li >
@@ -108,10 +108,10 @@ QBlog            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="/blog/see-the-scence-at-500am-again.html"
+                    <a href="/blog/migrate-problem-when-replace-the-dbsqlite3-file.html"
                        rel="bookmark"
-                       title="Permalink to See the scence at 5:00am again">
-                        See the scence at 5:00am&nbsp;again
+                       title="Permalink to Migrate problem when replace the db.sqlite3 file">
+                        Migrate problem when replace the db.sqlite3&nbsp;file
                     </a>
                 </h1>
             </header>
@@ -121,7 +121,7 @@ QBlog            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2018-10-18T12:38:39.385254+08:00"> Thu, 18 Oct 2018</time>
+        <i class="fa fa-calendar"></i><time datetime="2018-11-03T22:02:24.035809+08:00"> Sat, 03 Nov 2018</time>
     </span>
 
 
@@ -129,24 +129,197 @@ QBlog            </a>
             <a href="/author/zqlai.html"><i class="fa fa-user"></i> zqlai</a>
 
         <span class="label label-default">Category</span>
-        <a href="/category/life.html">life</a>
+        <a href="/category/django.html">Django</a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="/tag/thought.html">thought</a>
+	<a href="/tag/django.html">Django</a>
         /
-	<a href="/tag/fighting.html">fighting</a>
+	<a href="/tag/migrate.html">Migrate</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>Went to bed at 5:00am last&nbsp;night</p>
-<p>or, this&nbsp;morning</p>
-<p>Saw the dawn scene of Changsha&nbsp;again</p>
-<p>alone, not&nbsp;lonely</p>
-<p>tired, but&nbsp;exited</p>
-<p>fell into sleep with hope and&nbsp;prospect</p>
-<p>with more&nbsp;responsibilty</p>
-<p>for the engels by my&nbsp;side</p>
+                <h1>problem</h1>
+<ul>
+<li>从其他开发人员拷贝一个db.sqlite3文件，覆盖本地文件</li>
+</ul>
+<div class="highlight"><pre><span></span>python manage.py makemigrations
+</pre></div>
+
+
+<p>报错</p>
+<div class="highlight"><pre><span></span>sqlite3.OperationalError: table &quot;django_admin_log&quot; already exists
+</pre></div>
+
+
+<p>估计是靠过来的db.sqlite3文件中已经有django_admin_log表，但是django_migrations&nbsp;表中没有记录本地的migration脚本，所以导致再建一次表，报错</p>
+<div class="highlight"><pre><span></span>python manage.py migrate easydict
+</pre></div>
+
+
+<p>单独迁移easydict，希望不会再迁移其他app，但还是报错</p>
+<div class="highlight"><pre><span></span>root@X250:~/118/yiji.git# python manage.py migrate easydict
+Operations to perform:
+Apply all migrations: easydict
+Running migrations:
+Applying auth.0002_auto_20181008_1626...Traceback (most recent call last):
+File &quot;/usr/local/lib/python3.6/dist-packages/Django-2.1.1-py3.6.egg/django/db/backends/utils.py&quot;, line 83, in _execute
+return self.cursor.execute(sql)
+File &quot;/usr/local/lib/python3.6/dist-packages/Django-2.1.1-py3.6.egg/django/db/backends/sqlite3/base.py&quot;, line 294, in execute
+return Database.Cursor.execute(self, query)
+sqlite3.OperationalError: table &quot;auth_group&quot; already exists
+</pre></div>
+
+
+<p>看了一下migrate的帮助文档，有一个&#8212;fake-initial参数：</p>
+<div class="highlight"><pre><span></span>  --fake-initial        Detect if tables already exist and fake-apply initial
+                        migrations if so. Make sure that the current database
+                        schema matches your initial migration before using
+                        this flag. Django will only check for an existing
+                        table name.
+</pre></div>
+
+
+<p>意思似乎是现有的表不迁移，所以执行：</p>
+<div class="highlight"><pre><span></span>python manage.py migrate --fake-initial
+root@X250:~/118/yiji.git# python manage.py migrate --fake-initial
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, easyadmin, easydict, sessions
+  Running migrations:
+    Applying admin.0002_logentry... FAKED
+    Applying admin.0003_logentry_user... FAKED
+    Applying auth.0002_auto_20181008_1626... FAKED
+    Applying auth.0003_auto_20181020_0345... OK
+    Applying auth.0004_auto_20181028_2319... OK
+    Applying easyadmin.0001_initial... OK
+
+ValueError: Related model &#39;easydict.User&#39; cannot be resolved
+</pre></div>
+
+
+<p>好了，终于看到这个错误了！！</p>
+<p>单独迁移easydict试试：</p>
+<div class="highlight"><pre><span></span>root@X250:~/118/yiji.git# python manage.py migrate easydict
+Operations to perform:
+  Apply all migrations: easydict
+  Traceback (most recent call last):
+    File &quot;manage.py&quot;, line 22, in &lt;module&gt;
+
+ValueError: The field admin.LogEntry.user was declared with a lazy reference to &#39;easydict.user&#39;, but app &#39;easydict&#39; isn&#39;t installed.
+</pre></div>
+
+
+<ul>
+<li>试了好多方法，还是这个错误，最好暴力。。。</li>
+</ul>
+<div class="highlight"><pre><span></span>root@X250:~/118/yiji.git# rm easydict/migrations/ -r
+root@X250:~/118/yiji.git# python manage.py makemigrations easydict 
+Migrations for &#39;easydict&#39;:
+  easydict/migrations/0001_initial.py
+      - Create model User
+      - Create model ClassInSchool
+      - Create model course_level0_table
+      - Create model course_level1_table
+      - Create model course_level2_table
+      - Create model LearningRecord
+      - Create model School
+      - Create model UserAct
+      - Create model Word
+      - Add field word to learningrecord
+      - Add field school to classinschool
+      - Add field classInSchool to user
+      - Add field groups to user
+      - Add field school to user
+      - Add field user_permissions to user
+</pre></div>
+
+
+<p>似乎ok了</p>
+<p>启动网站，打开http://127.0.0.1:8000/admin/easydict/school/，报错：</p>
+<div class="highlight"><pre><span></span>no such column: easydict_school.telephone
+</pre></div>
+
+
+<p>奇怪了，难道是数据库的easydict一直没有成功吗？打开dbshell，看一下easydict.school的定义：</p>
+<div class="highlight"><pre><span></span>sqlite&gt; select * from sqlite_master where type=&#39;table&#39; and name=&#39;easydict_school&#39;;
+table|easydict_school|easydict_school|28|CREATE TABLE &quot;easydict_school&quot; (&quot;id&quot; integer NOT NULL PRIMARY KEY AUTOINCREMENT, &quot;name&quot; varchar(100) NOT NULL, &quot;address&quot; varchar(200) NOT NULL, &quot;telphone&quot; varchar(20) NOT NULL, &quot;Fax&quot; varchar(20) NOT NULL, &quot;website&quot; varchar(100) NOT NULL, &quot;description&quot; varchar(100) NOT NULL, &quot;manager_id&quot; integer NOT NULL REFERENCES &quot;easydict_user&quot; (&quot;id&quot;) DEFERRABLE INITIALLY DEFERRED)
+</pre></div>
+
+
+<p>果然，还是telphone，少了一个&#8217;e&#8217;</p>
+<p>但是easydict/migrations/0001_initial里的定义是没错的</p>
+<h1>似乎找到一个问题, easydict&nbsp;一直没有迁移成功</h1>
+<p>也就是说，之前easydict/migrations下有好多脚本，到了0006，包含了model更新的记录，删掉之后重新makemigrations生成的脚本也没有作用到数据库中.&nbsp;什么原因？</p>
+<p>查看数据库中django_migrations表：</p>
+<div class="highlight"><pre><span></span>sqlite&gt; select * from django_migrations;
+1|contenttypes|0001_initial|2018-10-28 16:18:49.518411
+2|contenttypes|0002_remove_content_type_name|2018-10-28 16:18:49.546412
+3|auth|0001_initial|2018-10-28 16:18:49.573414
+4|auth|0002_alter_permission_name_max_length|2018-10-28 16:18:49.590415
+5|auth|0003_alter_user_email_max_length|2018-10-28 16:18:49.601416
+6|auth|0004_alter_user_username_opts|2018-10-28 16:18:49.614416
+7|auth|0005_alter_user_last_login_null|2018-10-28 16:18:49.625417
+8|auth|0006_require_contenttypes_0002|2018-10-28 16:18:49.629417
+9|auth|0007_alter_validators_add_error_messages|2018-10-28 16:18:49.642418
+10|auth|0008_alter_user_username_max_length|2018-10-28 16:18:49.653419
+11|auth|0009_alter_user_last_name_max_length|2018-10-28 16:18:49.665419
+12|easydict|0001_initial|2018-10-28 16:18:49.831429
+13|admin|0001_initial|2018-10-28 16:18:49.857430
+14|admin|0002_logentry_remove_auto_add|2018-10-28 16:18:49.884432
+15|sessions|0001_initial|2018-10-28 16:18:49.897433
+16|admin|0002_logentry|2018-11-03 13:24:52.145426
+17|admin|0003_logentry_user|2018-11-03 13:24:52.163519
+18|auth|0002_auto_20181008_1626|2018-11-03 13:24:52.197976
+19|auth|0003_auto_20181020_0345|2018-11-03 13:24:52.211341
+20|auth|0004_auto_20181028_2319|2018-11-03 13:24:52.223982
+21|easyadmin|0001_initial|2018-11-03 13:24:52.237841
+22|easyadmin|0002_charge_manageractlog|2018-11-03 13:35:25.042510
+23|sessions|0002_auto_20181008_1626|2018-11-03 13:35:25.055024
+24|easydict|0002_auto_20181103_1342|2018-11-03 14:06:10.146670
+</pre></div>
+
+
+<p>也就是说，这里记录了easydict/0001_initial已经迁移过了，在migrate的时候，新makemigrations生成的0001_initial是不会执行的。</p>
+<p>怎么解决，删掉这条记录？</p>
+<div class="highlight"><pre><span></span>root@X250:~/118/yiji.git# python manage.py migrate easydict
+Traceback (most recent call last):
+     django.db.migrations.exceptions.InconsistentMigrationHistory: Migration easydict.0002_auto_20181103_1342 is applied before its dependency easydict.0001_initial on database &#39;default&#39;.
+</pre></div>
+
+
+<p>还不行，删掉整个表数据。&nbsp;然后，</p>
+<div class="highlight"><pre><span></span>root@X250:~/118/yiji.git# python manage.py migrate easydict
+Operations to perform:
+  Apply all migrations: easydict
+  Running migrations:
+  Applying contenttypes.0001_initial...Traceback (most recent call last):
+  File &quot;/usr/local/lib/python3.6/dist-packages/Django-2.1.1-py3.6.egg/django/db/backends/utils.py&quot;, line 83, in _execute
+  return self.cursor.execute(sql)
+  File &quot;/usr/local/lib/python3.6/dist-packages/Django-2.1.1-py3.6.egg/django/db/backends/sqlite3/base.py&quot;, line 294, in execute
+  return Database.Cursor.execute(self, query)
+    sqlite3.OperationalError: table &quot;django_content_type&quot; already exists
+</pre></div>
+
+
+<p>好吧，再来：</p>
+<div class="highlight"><pre><span></span>root@X250:~/118/yiji.git# python manage.py migrate easydict --fake-initial
+Operations to perform:
+  Apply all migrations: easydict
+  Running migrations:
+  Applying contenttypes.0001_initial... FAKED
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0001_initial... OK
+  Applying auth.0002_auto_20181008_1626... FAKED
+  Applying auth.0003_auto_20181020_0345... OK
+  Applying auth.0004_auto_20181028_2319... OK
+  Applying easydict.0001_initial... FAKED
+  Applying easydict.0002_auto_20181103_1342... OK
+</pre></div>
+
+
+<p>好了，easydict总算迁移成功。&#8230;</p>
+<h1>问什么migrate easydict&nbsp;还会迁移auth和contecttypes呢？</h1>
+<h1>等等， easydict.0001_initial是<code>FAKED</code>，也就是没有真的迁移？！</h1>
             </div>
             <!-- /.entry-content -->
     <hr />

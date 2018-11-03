@@ -5,21 +5,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2018-10-18T12:42:32-00:00</lastmod>
+<lastmod>2018-11-03T22:06:11-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/archives.html</loc>
-<lastmod>2018-10-18T12:42:32-00:00</lastmod>
+<lastmod>2018-11-03T22:06:11-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/categories.html</loc>
-<lastmod>2018-10-18T12:42:32-00:00</lastmod>
+<lastmod>2018-11-03T22:06:11-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -41,6 +41,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/blog/my second post.html</loc>
 <lastmod>2018-12-05T19:30:00+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+
+<url>
+<loc>/blog/migrate-problem-when-replace-the-dbsqlite3-file.html</loc>
+<lastmod>2018-11-03T22:02:24+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
@@ -118,6 +125,20 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/tag/publishing.html</loc>
 <lastmod>2018-12-06T21:00:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/django.html</loc>
+<lastmod>2018-11-03T22:02:24+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/migrate.html</loc>
+<lastmod>2018-11-03T22:02:24+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
