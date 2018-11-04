@@ -20,7 +20,7 @@
         <meta property="og:title" content="Migrate problem when replace the db.sqlite3 file"/>
         <meta property="og:url" content="/blog/migrate-problem-when-replace-the-dbsqlite3-file.html"/>
         <meta property="og:description" content="从其他开发人员拷贝一个db.sqlite3文件，覆盖本地文件 python manage.py makemigrations 报错 sqlite3.OperationalError: table &#34;django_admin_log&#34; already exists 估计是靠过来的db.sqlite3文件中已经有django_admin_log表，但是django_migrations 表中没有记录本地的migration脚本，所以导致再建一次表，报错 python manage.py migrate easydict 单独迁移easydict，希望不会再迁移其他app，但还是报错 root@X250:~/118/yiji.git# python manage.py migrate easydict Operations to perform: Apply all migrations: easydict Running migrations: Applying auth.0002_auto_20181008_1626 …"/>
-        <meta property="article:published_time" content="2018-11-03" />
+        <meta property="article:published_time" content="2018-11-04" />
             <meta property="article:section" content="Django" />
             <meta property="article:tag" content="Django" />
             <meta property="article:tag" content="Migrate" />
@@ -121,7 +121,7 @@ QBlog            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2018-11-03T22:18:41.187763+08:00"> Sat, 03 Nov 2018</time>
+        <i class="fa fa-calendar"></i><time datetime="2018-11-04T09:43:25.234450+08:00"> Sun, 04 Nov 2018</time>
     </span>
 
 
@@ -315,8 +315,18 @@ Operations to perform:
 
 
 <p>好了，easydict总算迁移成功。&#8230;</p>
-<h2>问什么migrate easydict&nbsp;还会迁移auth和contecttypes呢？</h2>
+<p>** 为什么migrate easydict&nbsp;还会迁移auth和contecttypes呢？</p>
+<p>可能是依赖关系导致.</p>
 <h2>等等， easydict.0001_initial是<code>FAKED</code>，也就是没有真的迁移？！</h2>
+<p>去数据库查，果真没有更新，折腾半天都是瞎折腾。。。&nbsp;试试：</p>
+<div class="highlight"><pre><span></span>root@X250:~/118/yiji.git# python manage.py migrate easydict
+....
+
+django.db.utils.OperationalError: table &quot;easydict_user&quot; already exists
+</pre></div>
+
+
+<p>总结一下：<code>数据库已经有一个easydict_user表了，如我我们想更新这个表的定义，同时又想保留其数据，一种方法是手动修改数据库各字段定义，比如使用dbshell工具；二种方法是，使用Django的migrate机制，保留每次makemigrations产生的脚本，这样你migrate的时候就可以只更新你修改的部分，也就是要保留这个migrations脚本文件，不然就得自己写。如果不保留这个migrations脚本，每次都删掉重新makemigrations，那么Django会认为，你是要重建一个表，那就与数据库中现有的表冲突了</code></p>
             </div>
             <!-- /.entry-content -->
     <hr />

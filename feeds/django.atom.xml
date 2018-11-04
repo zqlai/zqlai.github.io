@@ -27,7 +27,7 @@
 &lt;li&gt;item1&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;**&amp;nbsp;item2&lt;/p&gt;
-&lt;p&gt;***&amp;nbsp;item3&lt;/p&gt;</content><category term="pelican"></category><category term="publishing"></category></entry><entry><title>Migrate problem when replace the db.sqlite3 file</title><link href="/blog/migrate-problem-when-replace-the-dbsqlite3-file.html" rel="alternate"></link><published>2018-11-03T22:18:41+08:00</published><updated>2018-11-03T22:18:41+08:00</updated><author><name>zqlai</name></author><id>tag:None,2018-11-03:/blog/migrate-problem-when-replace-the-dbsqlite3-file.html</id><summary type="html">&lt;h2&gt;从其他开发人员拷贝一个db.sqlite3文件，覆盖本地文件&lt;/h2&gt;
+&lt;p&gt;***&amp;nbsp;item3&lt;/p&gt;</content><category term="pelican"></category><category term="publishing"></category></entry><entry><title>Migrate problem when replace the db.sqlite3 file</title><link href="/blog/migrate-problem-when-replace-the-dbsqlite3-file.html" rel="alternate"></link><published>2018-11-04T09:43:25+08:00</published><updated>2018-11-04T09:43:25+08:00</updated><author><name>zqlai</name></author><id>tag:None,2018-11-04:/blog/migrate-problem-when-replace-the-dbsqlite3-file.html</id><summary type="html">&lt;h2&gt;从其他开发人员拷贝一个db.sqlite3文件，覆盖本地文件&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;python manage.py makemigrations
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -223,5 +223,15 @@ Operations to perform:
 
 
 &lt;p&gt;好了，easydict总算迁移成功。&amp;#8230;&lt;/p&gt;
-&lt;h2&gt;问什么migrate easydict&amp;nbsp;还会迁移auth和contecttypes呢？&lt;/h2&gt;
-&lt;h2&gt;等等， easydict.0001_initial是&lt;code&gt;FAKED&lt;/code&gt;，也就是没有真的迁移？！&lt;/h2&gt;</content><category term="Django"></category><category term="Migrate"></category></entry></feed>
+&lt;p&gt;** 为什么migrate easydict&amp;nbsp;还会迁移auth和contecttypes呢？&lt;/p&gt;
+&lt;p&gt;可能是依赖关系导致.&lt;/p&gt;
+&lt;h2&gt;等等， easydict.0001_initial是&lt;code&gt;FAKED&lt;/code&gt;，也就是没有真的迁移？！&lt;/h2&gt;
+&lt;p&gt;去数据库查，果真没有更新，折腾半天都是瞎折腾。。。&amp;nbsp;试试：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;root@X250:~/118/yiji.git# python manage.py migrate easydict
+....
+
+django.db.utils.OperationalError: table &amp;quot;easydict_user&amp;quot; already exists
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;总结一下：&lt;code&gt;数据库已经有一个easydict_user表了，如我我们想更新这个表的定义，同时又想保留其数据，一种方法是手动修改数据库各字段定义，比如使用dbshell工具；二种方法是，使用Django的migrate机制，保留每次makemigrations产生的脚本，这样你migrate的时候就可以只更新你修改的部分，也就是要保留这个migrations脚本文件，不然就得自己写。如果不保留这个migrations脚本，每次都删掉重新makemigrations，那么Django会认为，你是要重建一个表，那就与数据库中现有的表冲突了&lt;/code&gt;&lt;/p&gt;</content><category term="Django"></category><category term="Migrate"></category></entry></feed>
