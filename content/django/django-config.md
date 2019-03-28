@@ -1,7 +1,5 @@
-Title: how to set up django on ubuntu 18.04
-Modified: 2018-12-05 19:30
-date: 2018-12-06 21:00
-Category: django 
+Title: test post - how to set up django on ubuntu 18.04
+Category: django
 Tags: pelican, publishing
 Slug: my second post
 Authors: zqlai
