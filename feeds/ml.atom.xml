@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>QBlog - ML</title><link href="/" rel="alternate"></link><link href="/feeds/ml.atom.xml" rel="self"></link><id>/</id><updated>2018-11-17T20:53:30+08:00</updated><entry><title>resnet on horovod with multi GPUs</title><link href="/blog/resnet-on-horovod-with-multi-gpus.html" rel="alternate"></link><published>2018-11-17T20:53:30+08:00</published><updated>2018-11-17T20:53:30+08:00</updated><author><name>zqlai</name></author><id>tag:None,2018-11-17:/blog/resnet-on-horovod-with-multi-gpus.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;2018-11-15 23:37:49.001918: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1490] Adding visible gpu devices: 1
+2018-11-15 23:37:49.001953: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-11-15 23:37:49.001960: I tensorflow/core/common_runtime/gpu/gpu_device …&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;2018-11-15 23:37:49.001918: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1490] Adding visible gpu devices: 1
+2018-11-15 23:37:49.001953: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-11-15 23:37:49.001960: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977]      1 
+2018-11-15 23:37:49.001965: I tensorflow/core/common_runtime/gpu/gpu_device.cc:990] 1:   N 
+Traceback (most recent call last):
+File &amp;quot;cifar10_main.py&amp;quot;, line 274, in &amp;lt;module&amp;gt;
+absl_app.run(main)
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/absl/app.py&amp;quot;, line 300, in run
+_run_main(main, args)
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/absl/app.py&amp;quot;, line 251, in _run_main
+sys.exit(main(argv))
+File &amp;quot;cifar10_main.py&amp;quot;, line 268, in main
+run_cifar(flags.FLAGS)
+File &amp;quot;cifar10_main.py&amp;quot;, line 263, in run_cifar
+shape=[_HEIGHT, _WIDTH, _NUM_CHANNELS])
+File &amp;quot;/THL5/home/wql17/zqlai/models/official/resnet/resnet_run_loop.py&amp;quot;, line 587, in resnet_main
+max_steps=flags_obj.max_train_steps)
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/tensorflow/python/estimator/estimator.py&amp;quot;, line 356, in train
+loss = self._train_model(input_fn, hooks, saving_listeners)
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/tensorflow/python/estimator/estimator.py&amp;quot;, line 1179, in _train_model
+return self._train_model_distributed(input_fn, hooks, saving_listeners)
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/tensorflow/python/estimator/estimator.py&amp;quot;, line 1326, in _train_model_distributed
+saving_listeners)
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/tensorflow/python/estimator/estimator.py&amp;quot;, line 1406, in _train_with_estimator_spec
+log_step_count_steps=self._config.log_step_count_steps) as mon_sess:
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py&amp;quot;, line 504, in MonitoredTrainingSession
+stop_grace_period_secs=stop_grace_period_secs)
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py&amp;quot;, line 921, in __init__
+stop_grace_period_secs=stop_grace_period_secs)
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py&amp;quot;, line 643, in __init__
+self._sess = _RecoverableSession(self._coordinated_creator)
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py&amp;quot;, line 1107, in __init__
+_WrappedSession.__init__(self, self._create_session())
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py&amp;quot;, line 1112, in _create_session
+return self._sess_creator.create_session()
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py&amp;quot;, line 800, in create_session
+self.tf_sess = self._session_creator.create_session()
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py&amp;quot;, line 566, in create_session
+init_fn=self._scaffold.init_fn)
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/tensorflow/python/training/session_manager.py&amp;quot;, line 281, in prepare_session
+config=config)
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/tensorflow/python/training/session_manager.py&amp;quot;, line 184, in _restore_checkpoint
+sess = session.Session(self._target, graph=self._graph, config=config)
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/tensorflow/python/client/session.py&amp;quot;, line 1511, in __init__
+I1115 23:37:49.481643 47000205927040 tf_logging.py:115] Running local_init_op.
+super(Session, self).__init__(target, graph, config=config)
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/tensorflow/python/client/session.py&amp;quot;, line 634, in __init__
+self._session = tf_session.TF_NewSessionRef(self._graph._c_graph, opts)
+&lt;/pre&gt;&lt;/div&gt;</content><category term="horovod"></category><category term="resnet"></category></entry></feed>

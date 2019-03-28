@@ -1,5 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>QBlog</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2018-12-06T21:00:00+08:00</updated><entry><title>how to set up django on ubuntu 18.04</title><link href="/blog/my%20second%20post.html" rel="alternate"></link><published>2018-12-06T21:00:00+08:00</published><updated>2018-12-05T19:30:00+08:00</updated><author><name>zqlai</name></author><id>tag:None,2018-12-06:/blog/my second post.html</id><summary type="html">&lt;p&gt;summary django setting&amp;nbsp;up&lt;/p&gt;</summary><content type="html">&lt;h1&gt;This is the content of my super blog&amp;nbsp;post.&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>QBlog</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2018-11-17T20:53:30+08:00</updated><entry><title>resnet on horovod with multi GPUs</title><link href="/blog/resnet-on-horovod-with-multi-gpus.html" rel="alternate"></link><published>2018-11-17T20:53:30+08:00</published><updated>2018-11-17T20:53:30+08:00</updated><author><name>zqlai</name></author><id>tag:None,2018-11-17:/blog/resnet-on-horovod-with-multi-gpus.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;2018-11-15 23:37:49.001918: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1490] Adding visible gpu devices: 1
+2018-11-15 23:37:49.001953: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-11-15 23:37:49.001960: I tensorflow/core/common_runtime/gpu/gpu_device …&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;2018-11-15 23:37:49.001918: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1490] Adding visible gpu devices: 1
+2018-11-15 23:37:49.001953: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-11-15 23:37:49.001960: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977]      1 
+2018-11-15 23:37:49.001965: I tensorflow/core/common_runtime/gpu/gpu_device.cc:990] 1:   N 
+Traceback (most recent call last):
+File &amp;quot;cifar10_main.py&amp;quot;, line 274, in &amp;lt;module&amp;gt;
+absl_app.run(main)
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/absl/app.py&amp;quot;, line 300, in run
+_run_main(main, args)
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/absl/app.py&amp;quot;, line 251, in _run_main
+sys.exit(main(argv))
+File &amp;quot;cifar10_main.py&amp;quot;, line 268, in main
+run_cifar(flags.FLAGS)
+File &amp;quot;cifar10_main.py&amp;quot;, line 263, in run_cifar
+shape=[_HEIGHT, _WIDTH, _NUM_CHANNELS])
+File &amp;quot;/THL5/home/wql17/zqlai/models/official/resnet/resnet_run_loop.py&amp;quot;, line 587, in resnet_main
+max_steps=flags_obj.max_train_steps)
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/tensorflow/python/estimator/estimator.py&amp;quot;, line 356, in train
+loss = self._train_model(input_fn, hooks, saving_listeners)
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/tensorflow/python/estimator/estimator.py&amp;quot;, line 1179, in _train_model
+return self._train_model_distributed(input_fn, hooks, saving_listeners)
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/tensorflow/python/estimator/estimator.py&amp;quot;, line 1326, in _train_model_distributed
+saving_listeners)
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/tensorflow/python/estimator/estimator.py&amp;quot;, line 1406, in _train_with_estimator_spec
+log_step_count_steps=self._config.log_step_count_steps) as mon_sess:
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py&amp;quot;, line 504, in MonitoredTrainingSession
+stop_grace_period_secs=stop_grace_period_secs)
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py&amp;quot;, line 921, in __init__
+stop_grace_period_secs=stop_grace_period_secs)
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py&amp;quot;, line 643, in __init__
+self._sess = _RecoverableSession(self._coordinated_creator)
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py&amp;quot;, line 1107, in __init__
+_WrappedSession.__init__(self, self._create_session())
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py&amp;quot;, line 1112, in _create_session
+return self._sess_creator.create_session()
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py&amp;quot;, line 800, in create_session
+self.tf_sess = self._session_creator.create_session()
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py&amp;quot;, line 566, in create_session
+init_fn=self._scaffold.init_fn)
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/tensorflow/python/training/session_manager.py&amp;quot;, line 281, in prepare_session
+config=config)
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/tensorflow/python/training/session_manager.py&amp;quot;, line 184, in _restore_checkpoint
+sess = session.Session(self._target, graph=self._graph, config=config)
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/tensorflow/python/client/session.py&amp;quot;, line 1511, in __init__
+I1115 23:37:49.481643 47000205927040 tf_logging.py:115] Running local_init_op.
+super(Session, self).__init__(target, graph, config=config)
+File &amp;quot;/THL5/home/wql17/anaconda2/lib/python2.7/site-packages/tensorflow/python/client/session.py&amp;quot;, line 634, in __init__
+self._session = tf_session.TF_NewSessionRef(self._graph._c_graph, opts)
+&lt;/pre&gt;&lt;/div&gt;</content><category term="horovod"></category><category term="resnet"></category></entry><entry><title>setting for ssh login without password input</title><link href="/blog/setting-for-ssh-login-without-password-input.html" rel="alternate"></link><published>2018-11-12T21:41:06+08:00</published><updated>2018-11-12T21:41:06+08:00</updated><author><name>zqlai</name></author><id>tag:None,2018-11-12:/blog/setting-for-ssh-login-without-password-input.html</id><summary type="html">&lt;p&gt;just two&amp;nbsp;steps&lt;/p&gt;
+&lt;p&gt;1.generate key pairs if not&amp;nbsp;exist&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ssh-keygen -t rsa
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If success, you will find &lt;code&gt;id_rsa&lt;/code&gt; and &lt;code&gt;id_rsa.pub&lt;/code&gt; in the &lt;code&gt;~/.ssh/&lt;/code&gt; dir&lt;/p&gt;
+&lt;p&gt;2.copy the public key to the server you want to&amp;nbsp;login&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ssh-copy-id username@hostname
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then, it will authorize your permission by&amp;nbsp;password.&lt;/p&gt;
+&lt;p&gt;If …&lt;/p&gt;</summary><content type="html">&lt;p&gt;just two&amp;nbsp;steps&lt;/p&gt;
+&lt;p&gt;1.generate key pairs if not&amp;nbsp;exist&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ssh-keygen -t rsa
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If success, you will find &lt;code&gt;id_rsa&lt;/code&gt; and &lt;code&gt;id_rsa.pub&lt;/code&gt; in the &lt;code&gt;~/.ssh/&lt;/code&gt; dir&lt;/p&gt;
+&lt;p&gt;2.copy the public key to the server you want to&amp;nbsp;login&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ssh-copy-id username@hostname
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then, it will authorize your permission by&amp;nbsp;password.&lt;/p&gt;
+&lt;p&gt;If both steps is done, you can ssh to the server without password input.
+In the ~/.ssh/authorized_key file on the server, you will find an entry&amp;nbsp;like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCpwXmBPQcLBDDZxUa18bLHoL0WrCRx9KR/4Dryyp4bbqq9877/hYQCKq9Cxvjvo6pBkQB6DdykEHnJIVKhgGGt1y85L0IYTkazM8O4Q04sj/RhBvscf5fOdSedRu7UVzULVccBrm1/uzfDZQnUgDUTrmGe3ynGVU0tjxwjXay5Xj7KZJmggGKR40bQ3eZAiXGbQSDSYaF9teT1aLh6z3Z0Z/7g7EtOwBWRrWoLlhgNiBF7uHi4FGlHxj2u9jcRTKzdI/rfTaVJZNyVuS7sSUqDl7fGyQ1XJq4AEKZg/wRuomKlme7aLl9Ee+8Lj+/kpdEcRYNImJHV9CdTKYZXNIFZ XX@XX
+&lt;/pre&gt;&lt;/div&gt;</content><category term="ssh"></category></entry><entry><title>test post - how to set up django on ubuntu 18.04</title><link href="/blog/my%20second%20post.html" rel="alternate"></link><published>2018-11-12T21:39:55+08:00</published><updated>2018-11-12T21:39:55+08:00</updated><author><name>zqlai</name></author><id>tag:None,2018-11-12:/blog/my second post.html</id><summary type="html">&lt;p&gt;summary django setting&amp;nbsp;up&lt;/p&gt;</summary><content type="html">&lt;h1&gt;This is the content of my super blog&amp;nbsp;post.&lt;/h1&gt;
 &lt;h2&gt;title&amp;nbsp;2&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;item1&lt;/li&gt;
@@ -27,7 +106,47 @@
 &lt;li&gt;item1&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;**&amp;nbsp;item2&lt;/p&gt;
-&lt;p&gt;***&amp;nbsp;item3&lt;/p&gt;</content><category term="pelican"></category><category term="publishing"></category></entry><entry><title>Migrate problem when replace the db.sqlite3 file</title><link href="/blog/migrate-problem-when-replace-the-dbsqlite3-file.html" rel="alternate"></link><published>2018-11-04T09:43:25+08:00</published><updated>2018-11-04T09:43:25+08:00</updated><author><name>zqlai</name></author><id>tag:None,2018-11-04:/blog/migrate-problem-when-replace-the-dbsqlite3-file.html</id><summary type="html">&lt;h2&gt;从其他开发人员拷贝一个db.sqlite3文件，覆盖本地文件&lt;/h2&gt;
+&lt;p&gt;***&amp;nbsp;item3&lt;/p&gt;</content><category term="pelican"></category><category term="publishing"></category></entry><entry><title>build Django on Godady virtual host</title><link href="/blog/build-django-on-godady-virtual-host.html" rel="alternate"></link><published>2018-11-08T22:08:39+08:00</published><updated>2018-11-08T22:08:39+08:00</updated><author><name>zqlai</name></author><id>tag:None,2018-11-08:/blog/build-django-on-godady-virtual-host.html</id><summary type="html">&lt;p&gt;just get a Godady virtual host, &lt;span class="caps"&gt;WITHOUT&lt;/span&gt; pip tool, only&amp;nbsp;python2.6&lt;/p&gt;
+&lt;p&gt;let&amp;#8217;s&amp;nbsp;begin&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;download source of python3.7.0 and unzip&amp;nbsp;it&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd python_source_dir
+./configure
+make
+make install
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;when &lt;code&gt;make install&lt;/code&gt;, an error came&amp;nbsp;out:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;      &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;_ctypes&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Union&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Structure&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Array&lt;/span&gt;
+      &lt;span class="ne"&gt;ImportError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;No&lt;/span&gt; &lt;span class="n"&gt;module&lt;/span&gt; &lt;span class="n"&gt;named&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;_ctypes&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Googling it …&lt;/p&gt;</summary><content type="html">&lt;p&gt;just get a Godady virtual host, &lt;span class="caps"&gt;WITHOUT&lt;/span&gt; pip tool, only&amp;nbsp;python2.6&lt;/p&gt;
+&lt;p&gt;let&amp;#8217;s&amp;nbsp;begin&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;download source of python3.7.0 and unzip&amp;nbsp;it&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd python_source_dir
+./configure
+make
+make install
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;when &lt;code&gt;make install&lt;/code&gt;, an error came&amp;nbsp;out:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;      &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;_ctypes&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Union&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Structure&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Array&lt;/span&gt;
+      &lt;span class="ne"&gt;ImportError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;No&lt;/span&gt; &lt;span class="n"&gt;module&lt;/span&gt; &lt;span class="n"&gt;named&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;_ctypes&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Googling it, seems that we need install libffi-dev,&amp;nbsp;then&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;download source and
+./configure make make install DESTDIR=~/software
+setup the LD_LIBRARY_PATH in the .bashrc and source it
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Django"></category><category term="Godady"></category></entry><entry><title>Migrate problem when replace the db.sqlite3 file</title><link href="/blog/migrate-problem-when-replace-the-dbsqlite3-file.html" rel="alternate"></link><published>2018-11-04T09:43:25+08:00</published><updated>2018-11-04T09:43:25+08:00</updated><author><name>zqlai</name></author><id>tag:None,2018-11-04:/blog/migrate-problem-when-replace-the-dbsqlite3-file.html</id><summary type="html">&lt;h2&gt;从其他开发人员拷贝一个db.sqlite3文件，覆盖本地文件&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;python manage.py makemigrations
 &lt;/pre&gt;&lt;/div&gt;
 

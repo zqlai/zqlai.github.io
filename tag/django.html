@@ -67,7 +67,13 @@ QBlog            </a>
                             <a href="/category/life.html">Life</a>
                         </li>
                         <li >
+                            <a href="/category/linux.html">Linux</a>
+                        </li>
+                        <li >
                             <a href="/category/misc.html">Misc</a>
+                        </li>
+                        <li >
+                            <a href="/category/ml.html">Ml</a>
                         </li>
                         <li >
                             <a href="/category/note.html">Note</a>
@@ -96,6 +102,52 @@ QBlog            </a>
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
+            <article>
+                <h2><a href="/blog/build-django-on-godady-virtual-host.html">build Django on Godady virtual&nbsp;host</a></h2>
+                    <div class="well well-sm">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2018-11-08T22:08:39.622497+08:00"> Thu, 08 Nov 2018</time>
+    </span>
+
+
+            <span class="label label-default">By</span>
+            <a href="/author/zqlai.html"><i class="fa fa-user"></i> zqlai</a>
+
+        <span class="label label-default">Category</span>
+        <a href="/category/life.html">life</a>
+
+
+<span class="label label-default">Tags</span>
+	<a href="/tag/django.html">Django</a>
+        /
+	<a href="/tag/godady.html">Godady</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                <div class="summary"><p>just get a Godady virtual host, <span class="caps">WITHOUT</span> pip tool, only&nbsp;python2.6</p>
+<p>let&#8217;s&nbsp;begin</p>
+<ol>
+<li>download source of python3.7.0 and unzip&nbsp;it</li>
+</ol>
+<div class="highlight"><pre><span></span>cd python_source_dir
+./configure
+make
+make install
+</pre></div>
+
+
+<p>when <code>make install</code>, an error came&nbsp;out:</p>
+<div class="highlight"><pre><span></span>      <span class="kn">from</span> <span class="nn">_ctypes</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Structure</span><span class="p">,</span> <span class="n">Array</span>
+      <span class="ne">ImportError</span><span class="p">:</span> <span class="n">No</span> <span class="n">module</span> <span class="n">named</span> <span class="s1">&#39;_ctypes&#39;</span>
+</pre></div>
+
+
+<p>Googling it …</p>
+                    <a class="btn btn-default btn-xs" href="/blog/build-django-on-godady-virtual-host.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
             <article>
                 <h2><a href="/blog/migrate-problem-when-replace-the-dbsqlite3-file.html">Migrate problem when replace the db.sqlite3&nbsp;file</a></h2>
                     <div class="well well-sm">
@@ -171,6 +223,7 @@ Applying auth.0002_auto_20181008_1626 …</pre></div>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
   <ul class="list-group" id="recentposts">
+    <li class="list-group-item"><a href="/blog/build-django-on-godady-virtual-host.html">build Django on Godady virtual&nbsp;host</a></li>
     <li class="list-group-item"><a href="/blog/migrate-problem-when-replace-the-dbsqlite3-file.html">Migrate problem when replace the db.sqlite3&nbsp;file</a></li>
   </ul>
 </li>
@@ -187,7 +240,13 @@ Applying auth.0002_auto_20181008_1626 …</pre></div>
       <a href="/category/life.html"><i class="fa fa-folder-open fa-lg"></i>life</a>
     </li>
     <li class="list-group-item">
+      <a href="/category/linux.html"><i class="fa fa-folder-open fa-lg"></i>Linux</a>
+    </li>
+    <li class="list-group-item">
       <a href="/category/misc.html"><i class="fa fa-folder-open fa-lg"></i>misc</a>
+    </li>
+    <li class="list-group-item">
+      <a href="/category/ml.html"><i class="fa fa-folder-open fa-lg"></i>ML</a>
     </li>
     <li class="list-group-item">
       <a href="/category/note.html"><i class="fa fa-folder-open fa-lg"></i>note</a>
@@ -204,13 +263,16 @@ Applying auth.0002_auto_20181008_1626 …</pre></div>
   <a href="/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
   <ul class="list-group " id="tags">
     <li class="list-group-item tag-1">
+      <a href="/tag/django.html">Django</a>
+    </li>
+    <li class="list-group-item tag-1">
       <a href="/tag/pelican.html">pelican</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="/tag/publishing.html">publishing</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="/tag/django.html">Django</a>
+      <a href="/tag/godady.html">Godady</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="/tag/migrate.html">Migrate</a>
@@ -219,13 +281,13 @@ Applying auth.0002_auto_20181008_1626 …</pre></div>
       <a href="/tag/fighting.html">fighting</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="/tag/horovod-th-1a.html">horovod TH-1A</a>
+      <a href="/tag/horovod.html">horovod</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="/tag/life.html">life</a>
+      <a href="/tag/resnet.html">resnet</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="/tag/photo.html">photo</a>
+      <a href="/tag/ssh.html">ssh</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="/tag/thought.html">thought</a>
