@@ -358,26 +358,7 @@ mpirun -np &lt;span class="m"&gt;4&lt;/span&gt; -H gn6,gn7 python examples/tenso
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;总结一下：&lt;code&gt;数据库已经有一个easydict_user表了，如我我们想更新这个表的定义，同时又想保留其数据，一种方法是手动修改数据库各字段定义，比如使用dbshell工具；二种方法是，使用Django的migrate机制，保留每次makemigrations产生的脚本，这样你migrate的时候就可以只更新你修改的部分，也就是要保留这个migrations脚本文件，不然就得自己写。如果不保留这个migrations脚本，每次都删掉重新makemigrations，那么Django会认为，你是要重建一个表，那就与数据库中现有的表冲突了&lt;/code&gt;&lt;/p&gt;</content><category term="Django"></category><category term="Migrate"></category></entry><entry><title>My super title</title><link href="/blog/my-super-title.html" rel="alternate"></link><published>2019-09-20T00:53:16+08:00</published><updated>2019-09-20T00:53:16+08:00</updated><author><name>Alexis Metaireau</name></author><id>tag:None,2019-09-20:/blog/my-super-title.html</id><summary type="html">&lt;p&gt;Short version for index and&amp;nbsp;feeds&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is the content of my super blog&amp;nbsp;post.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;t&lt;/span&gt;
-
-&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strftime&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;hr&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;t&lt;/span&gt;
-&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strftime&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;hr&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;lib.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
-
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</content><category term="pelican"></category><category term="publishing"></category></entry><entry><title>test post - how to set up django on ubuntu 18.04</title><link href="/blog/my%20second%20post.html" rel="alternate"></link><published>2019-09-20T00:53:16+08:00</published><updated>2019-09-20T00:53:16+08:00</updated><author><name>zqlai</name></author><id>tag:None,2019-09-20:/blog/my second post.html</id><summary type="html">&lt;p&gt;summary django setting&amp;nbsp;up&lt;/p&gt;</summary><content type="html">&lt;h1&gt;This is the content of my super blog&amp;nbsp;post.&lt;/h1&gt;
+&lt;p&gt;总结一下：&lt;code&gt;数据库已经有一个easydict_user表了，如我我们想更新这个表的定义，同时又想保留其数据，一种方法是手动修改数据库各字段定义，比如使用dbshell工具；二种方法是，使用Django的migrate机制，保留每次makemigrations产生的脚本，这样你migrate的时候就可以只更新你修改的部分，也就是要保留这个migrations脚本文件，不然就得自己写。如果不保留这个migrations脚本，每次都删掉重新makemigrations，那么Django会认为，你是要重建一个表，那就与数据库中现有的表冲突了&lt;/code&gt;&lt;/p&gt;</content><category term="Django"></category><category term="Migrate"></category></entry><entry><title>test post - how to set up django on ubuntu 18.04</title><link href="/blog/my%20second%20post.html" rel="alternate"></link><published>2019-09-20T00:53:16+08:00</published><updated>2019-09-20T00:53:16+08:00</updated><author><name>zqlai</name></author><id>tag:None,2019-09-20:/blog/my second post.html</id><summary type="html">&lt;p&gt;summary django setting&amp;nbsp;up&lt;/p&gt;</summary><content type="html">&lt;h1&gt;This is the content of my super blog&amp;nbsp;post.&lt;/h1&gt;
 &lt;h2&gt;title&amp;nbsp;2&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;item1&lt;/li&gt;
@@ -445,4 +426,23 @@ mpirun -np &lt;span class="m"&gt;4&lt;/span&gt; -H gn6,gn7 python examples/tenso
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;download&lt;/span&gt; &lt;span class="k"&gt;source&lt;/span&gt; &lt;span class="k"&gt;and&lt;/span&gt;
 &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;configure&lt;/span&gt; &lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;DESTDIR&lt;/span&gt;&lt;span class="o"&gt;=~/&lt;/span&gt;&lt;span class="n"&gt;software&lt;/span&gt;
 &lt;span class="n"&gt;setup&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;LD_LIBRARY_PATH&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bashrc&lt;/span&gt; &lt;span class="k"&gt;and&lt;/span&gt; &lt;span class="k"&gt;source&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</content><category term="Django"></category><category term="Godady"></category></entry></feed>
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Django"></category><category term="Godady"></category></entry><entry><title>My super title</title><link href="/blog/my-super-title.html" rel="alternate"></link><published>2018-01-01T00:00:00+08:00</published><updated>2018-01-01T00:00:00+08:00</updated><author><name>Alexis Metaireau</name></author><id>tag:None,2018-01-01:/blog/my-super-title.html</id><summary type="html">&lt;p&gt;Short version for index and&amp;nbsp;feeds&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is the content of my super blog&amp;nbsp;post.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;t&lt;/span&gt;
+
+&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strftime&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;hr&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;t&lt;/span&gt;
+&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strftime&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;hr&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;lib.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="pelican"></category><category term="publishing"></category></entry></feed>
