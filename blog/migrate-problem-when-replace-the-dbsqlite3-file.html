@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Migrate problem when replace the db.sqlite3 file - QBlog</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="/blog/migrate-problem-when-replace-the-dbsqlite3-file.html">
+
+        <meta name="author" content="zqlai" />
+        <meta name="keywords" content="Django,Migrate" />
+        <meta name="description" content="从其他开发人员拷贝一个db.sqlite3文件，覆盖本地文件 python manage.py makemigrations 报错 sqlite3.OperationalError: table &#34;django_admin_log&#34; already exists 估计是靠过来的db.sqlite3文件中已经有django_admin_log表，但是django_migrations 表中没有记录本地的migration脚本，所以导致再建一次表，报错 python manage.py migrate easydict 单独迁移easydict，希望不会再迁移其他app，但还是报错 root@X250:~/118/yiji.git# python manage.py migrate easydict Operations to perform: Apply all migrations: easydict Running migrations: Applying auth.0002 …" />
+
+        <meta property="og:site_name" content="QBlog" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Migrate problem when replace the db.sqlite3 file"/>
+        <meta property="og:url" content="/blog/migrate-problem-when-replace-the-dbsqlite3-file.html"/>
+        <meta property="og:description" content="从其他开发人员拷贝一个db.sqlite3文件，覆盖本地文件 python manage.py makemigrations 报错 sqlite3.OperationalError: table &#34;django_admin_log&#34; already exists 估计是靠过来的db.sqlite3文件中已经有django_admin_log表，但是django_migrations 表中没有记录本地的migration脚本，所以导致再建一次表，报错 python manage.py migrate easydict 单独迁移easydict，希望不会再迁移其他app，但还是报错 root@X250:~/118/yiji.git# python manage.py migrate easydict Operations to perform: Apply all migrations: easydict Running migrations: Applying auth.0002 …"/>
+        <meta property="article:published_time" content="2019-09-20" />
+            <meta property="article:section" content="Django" />
+            <meta property="article:tag" content="Django" />
+            <meta property="article:tag" content="Migrate" />
+            <meta property="article:author" content="zqlai" />
+
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="/theme/css/bootstrap.flatly.min.css" type="text/css"/>
+    <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments/native.css" rel="stylesheet">
+    <link href="/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
+        <link href="/theme/css/typogrify.css" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="QBlog ATOM Feed"/>
+
+        <link href="/feeds/django.atom.xml" type="application/atom+xml" rel="alternate"
+              title="QBlog Django ATOM Feed"/>
+</head>
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">
+QBlog            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="/about.html">
+                             About
+                          </a></li>
+                         <li><a href="/contact.html">
+                             Contact
+                          </a></li>
+                        <li class="active">
+                            <a href="/category/django.html">Django</a>
+                        </li>
+                        <li >
+                            <a href="/category/life.html">Life</a>
+                        </li>
+                        <li >
+                            <a href="/category/linux.html">Linux</a>
+                        </li>
+                        <li >
+                            <a href="/category/misc.html">Misc</a>
+                        </li>
+                        <li >
+                            <a href="/category/ml.html">Ml</a>
+                        </li>
+                        <li >
+                            <a href="/category/note.html">Note</a>
+                        </li>
+                        <li >
+                            <a href="/category/python.html">Python</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><span>
+                <form class="navbar-search" action="/search.html">
+                  <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input" required>
+                </form></span>
+              </li>
+              <li><a href="/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<!-- Banner -->
+<!-- End Banner -->
+
+<!-- Content Container -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/blog/migrate-problem-when-replace-the-dbsqlite3-file.html"
+                       rel="bookmark"
+                       title="Permalink to Migrate problem when replace the db.sqlite3 file">
+                        Migrate problem when replace the db.sqlite3&nbsp;file
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2019-09-20T00:53:16.177198+08:00"> 周五, 20 九月 2019</time>
+    </span>
+
+
+            <span class="label label-default">By</span>
+            <a href="/author/zqlai.html"><i class="fa fa-user"></i> zqlai</a>
+
+        <span class="label label-default">Category</span>
+        <a href="/category/django.html">Django</a>
+
+
+<span class="label label-default">Tags</span>
+	<a href="/tag/django.html">Django</a>
+        /
+	<a href="/tag/migrate.html">Migrate</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <h2>从其他开发人员拷贝一个db.sqlite3文件，覆盖本地文件</h2>
+<div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">manage</span><span class="p">.</span><span class="n">py</span> <span class="n">makemigrations</span>
+</pre></div>
+
+
+<p>报错</p>
+<div class="highlight"><pre><span></span><span class="n">sqlite3</span><span class="p">.</span><span class="n">OperationalError</span><span class="p">:</span> <span class="k">table</span> <span class="ss">&quot;django_admin_log&quot;</span> <span class="n">already</span> <span class="k">exists</span>
+</pre></div>
+
+
+<p>估计是靠过来的db.sqlite3文件中已经有django_admin_log表，但是django_migrations&nbsp;表中没有记录本地的migration脚本，所以导致再建一次表，报错</p>
+<div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">manage</span><span class="p">.</span><span class="n">py</span> <span class="n">migrate</span> <span class="n">easydict</span>
+</pre></div>
+
+
+<p>单独迁移easydict，希望不会再迁移其他app，但还是报错</p>
+<div class="highlight"><pre><span></span><span class="nv">root</span>@<span class="nv">X250</span>:<span class="o">~/</span><span class="mi">118</span><span class="o">/</span><span class="nv">yiji</span>.<span class="nv">git</span># <span class="nv">python</span> <span class="nv">manage</span>.<span class="nv">py</span> <span class="nv">migrate</span> <span class="nv">easydict</span>
+<span class="nv">Operations</span> <span class="nv">to</span> <span class="nv">perform</span>:
+<span class="nv">Apply</span> <span class="nv">all</span> <span class="nv">migrations</span>: <span class="nv">easydict</span>
+<span class="nv">Running</span> <span class="nv">migrations</span>:
+<span class="nv">Applying</span> <span class="nv">auth</span>.<span class="mi">0002</span><span class="nv">_auto_20181008_1626</span>...<span class="nv">Traceback</span> <span class="ss">(</span><span class="nv">most</span> <span class="nv">recent</span> <span class="k">call</span> <span class="nl">last</span><span class="ss">)</span>:
+<span class="nv">File</span> <span class="s2">&quot;</span><span class="s">/usr/local/lib/python3.6/dist-packages/Django-2.1.1-py3.6.egg/django/db/backends/utils.py</span><span class="s2">&quot;</span>, <span class="nv">line</span> <span class="mi">83</span>, <span class="nv">in</span> <span class="nv">_execute</span>
+<span class="k">return</span> <span class="nv">self</span>.<span class="nv">cursor</span>.<span class="nv">execute</span><span class="ss">(</span><span class="nv">sql</span><span class="ss">)</span>
+<span class="nv">File</span> <span class="s2">&quot;</span><span class="s">/usr/local/lib/python3.6/dist-packages/Django-2.1.1-py3.6.egg/django/db/backends/sqlite3/base.py</span><span class="s2">&quot;</span>, <span class="nv">line</span> <span class="mi">294</span>, <span class="nv">in</span> <span class="nv">execute</span>
+<span class="k">return</span> <span class="nv">Database</span>.<span class="nv">Cursor</span>.<span class="nv">execute</span><span class="ss">(</span><span class="nv">self</span>, <span class="nv">query</span><span class="ss">)</span>
+<span class="nv">sqlite3</span>.<span class="nv">OperationalError</span>: <span class="nv">table</span> <span class="s2">&quot;</span><span class="s">auth_group</span><span class="s2">&quot;</span> <span class="nv">already</span> <span class="nv">exists</span>
+</pre></div>
+
+
+<p>看了一下migrate的帮助文档，有一个&#8212;fake-initial参数：</p>
+<div class="highlight"><pre><span></span>  <span class="o">--</span><span class="nv">fake</span><span class="o">-</span><span class="nv">initial</span>        <span class="nv">Detect</span> <span class="k">if</span> <span class="nv">tables</span> <span class="nv">already</span> <span class="nv">exist</span> <span class="nv">and</span> <span class="nv">fake</span><span class="o">-</span><span class="nv">apply</span> <span class="nv">initial</span>
+                        <span class="nv">migrations</span> <span class="k">if</span> <span class="nv">so</span>. <span class="nv">Make</span> <span class="nv">sure</span> <span class="nv">that</span> <span class="nv">the</span> <span class="nv">current</span> <span class="nv">database</span>
+                        <span class="nv">schema</span> <span class="nv">matches</span> <span class="nv">your</span> <span class="nv">initial</span> <span class="nv">migration</span> <span class="nv">before</span> <span class="nv">using</span>
+                        <span class="nv">this</span> <span class="nv">flag</span>. <span class="nv">Django</span> <span class="nv">will</span> <span class="nv">only</span> <span class="nv">check</span> <span class="k">for</span> <span class="nv">an</span> <span class="nv">existing</span>
+                        <span class="nv">table</span> <span class="nv">name</span>.
+</pre></div>
+
+
+<p>意思似乎是现有的表不迁移，所以执行：</p>
+<div class="highlight"><pre><span></span><span class="n">python</span><span class="w"> </span><span class="n">manage</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="n">migrate</span><span class="w"> </span><span class="c1">--fake-initial</span>
+<span class="n">root</span><span class="nv">@X250</span><span class="err">:</span><span class="o">~/</span><span class="mi">118</span><span class="o">/</span><span class="n">yiji</span><span class="p">.</span><span class="n">git</span><span class="err">#</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="n">manage</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="n">migrate</span><span class="w"> </span><span class="c1">--fake-initial</span>
+<span class="n">Operations</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="nl">perform</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="n">Apply</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="nl">migrations</span><span class="p">:</span><span class="w"> </span><span class="k">admin</span><span class="p">,</span><span class="w"> </span><span class="n">auth</span><span class="p">,</span><span class="w"> </span><span class="n">contenttypes</span><span class="p">,</span><span class="w"> </span><span class="n">easyadmin</span><span class="p">,</span><span class="w"> </span><span class="n">easydict</span><span class="p">,</span><span class="w"> </span><span class="n">sessions</span><span class="w"></span>
+<span class="w">  </span><span class="n">Running</span><span class="w"> </span><span class="nl">migrations</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">Applying</span><span class="w"> </span><span class="k">admin</span><span class="mf">.0002</span><span class="n">_logentry</span><span class="p">...</span><span class="w"> </span><span class="n">FAKED</span><span class="w"></span>
+<span class="w">    </span><span class="n">Applying</span><span class="w"> </span><span class="k">admin</span><span class="mf">.0003</span><span class="n">_logentry_user</span><span class="p">...</span><span class="w"> </span><span class="n">FAKED</span><span class="w"></span>
+<span class="w">    </span><span class="n">Applying</span><span class="w"> </span><span class="n">auth</span><span class="mf">.0002</span><span class="n">_auto_20181008_1626</span><span class="p">...</span><span class="w"> </span><span class="n">FAKED</span><span class="w"></span>
+<span class="w">    </span><span class="n">Applying</span><span class="w"> </span><span class="n">auth</span><span class="mf">.0003</span><span class="n">_auto_20181020_0345</span><span class="p">...</span><span class="w"> </span><span class="n">OK</span><span class="w"></span>
+<span class="w">    </span><span class="n">Applying</span><span class="w"> </span><span class="n">auth</span><span class="mf">.0004</span><span class="n">_auto_20181028_2319</span><span class="p">...</span><span class="w"> </span><span class="n">OK</span><span class="w"></span>
+<span class="w">    </span><span class="n">Applying</span><span class="w"> </span><span class="n">easyadmin</span><span class="mf">.0001</span><span class="n">_initial</span><span class="p">...</span><span class="w"> </span><span class="n">OK</span><span class="w"></span>
+
+<span class="nl">ValueError</span><span class="p">:</span><span class="w"> </span><span class="n">Related</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="s1">&#39;easydict.User&#39;</span><span class="w"> </span><span class="n">cannot</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">resolved</span><span class="w"></span>
+</pre></div>
+
+
+<p>好了，终于看到这个错误了！！</p>
+<p>单独迁移easydict试试：</p>
+<div class="highlight"><pre><span></span><span class="n">root</span><span class="nv">@X250</span><span class="err">:</span><span class="o">~/</span><span class="mi">118</span><span class="o">/</span><span class="n">yiji</span><span class="p">.</span><span class="n">git</span><span class="err">#</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="n">manage</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="n">migrate</span><span class="w"> </span><span class="n">easydict</span><span class="w"></span>
+<span class="n">Operations</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="nl">perform</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="n">Apply</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="nl">migrations</span><span class="p">:</span><span class="w"> </span><span class="n">easydict</span><span class="w"></span>
+<span class="w">  </span><span class="n">Traceback</span><span class="w"> </span><span class="p">(</span><span class="n">most</span><span class="w"> </span><span class="n">recent</span><span class="w"> </span><span class="k">call</span><span class="w"> </span><span class="k">last</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">File</span><span class="w"> </span><span class="ss">&quot;manage.py&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="o">&lt;</span><span class="k">module</span><span class="o">&gt;</span><span class="w"></span>
+
+<span class="nl">ValueError</span><span class="p">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">field</span><span class="w"> </span><span class="k">admin</span><span class="p">.</span><span class="n">LogEntry</span><span class="p">.</span><span class="k">user</span><span class="w"> </span><span class="n">was</span><span class="w"> </span><span class="n">declared</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">lazy</span><span class="w"> </span><span class="n">reference</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="s1">&#39;easydict.user&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="n">app</span><span class="w"> </span><span class="s1">&#39;easydict&#39;</span><span class="w"> </span><span class="n">isn</span><span class="err">&#39;</span><span class="n">t</span><span class="w"> </span><span class="n">installed</span><span class="p">.</span><span class="w"></span>
+</pre></div>
+
+
+<ul>
+<li>试了好多方法，还是这个错误，最好暴力。。。</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="nv">root</span>@<span class="nv">X250</span>:<span class="o">~/</span><span class="mi">118</span><span class="o">/</span><span class="nv">yiji</span>.<span class="nv">git</span># <span class="nv">rm</span> <span class="nv">easydict</span><span class="o">/</span><span class="nv">migrations</span><span class="o">/</span> <span class="o">-</span><span class="nv">r</span>
+<span class="nv">root</span>@<span class="nv">X250</span>:<span class="o">~/</span><span class="mi">118</span><span class="o">/</span><span class="nv">yiji</span>.<span class="nv">git</span># <span class="nv">python</span> <span class="nv">manage</span>.<span class="nv">py</span> <span class="nv">makemigrations</span> <span class="nv">easydict</span> 
+<span class="nv">Migrations</span> <span class="k">for</span> <span class="s1">&#39;</span><span class="s">easydict</span><span class="s1">&#39;</span>:
+  <span class="nv">easydict</span><span class="o">/</span><span class="nv">migrations</span><span class="o">/</span><span class="mi">0001</span><span class="nv">_initial</span>.<span class="nv">py</span>
+      <span class="o">-</span> <span class="nv">Create</span> <span class="nv">model</span> <span class="nv">User</span>
+      <span class="o">-</span> <span class="nv">Create</span> <span class="nv">model</span> <span class="nv">ClassInSchool</span>
+      <span class="o">-</span> <span class="nv">Create</span> <span class="nv">model</span> <span class="nv">course_level0_table</span>
+      <span class="o">-</span> <span class="nv">Create</span> <span class="nv">model</span> <span class="nv">course_level1_table</span>
+      <span class="o">-</span> <span class="nv">Create</span> <span class="nv">model</span> <span class="nv">course_level2_table</span>
+      <span class="o">-</span> <span class="nv">Create</span> <span class="nv">model</span> <span class="nv">LearningRecord</span>
+      <span class="o">-</span> <span class="nv">Create</span> <span class="nv">model</span> <span class="nv">School</span>
+      <span class="o">-</span> <span class="nv">Create</span> <span class="nv">model</span> <span class="nv">UserAct</span>
+      <span class="o">-</span> <span class="nv">Create</span> <span class="nv">model</span> <span class="nv">Word</span>
+      <span class="o">-</span> <span class="nv">Add</span> <span class="nv">field</span> <span class="nv">word</span> <span class="nv">to</span> <span class="nv">learningrecord</span>
+      <span class="o">-</span> <span class="nv">Add</span> <span class="nv">field</span> <span class="nv">school</span> <span class="nv">to</span> <span class="nv">classinschool</span>
+      <span class="o">-</span> <span class="nv">Add</span> <span class="nv">field</span> <span class="nv">classInSchool</span> <span class="nv">to</span> <span class="nv">user</span>
+      <span class="o">-</span> <span class="nv">Add</span> <span class="nv">field</span> <span class="nv">groups</span> <span class="nv">to</span> <span class="nv">user</span>
+      <span class="o">-</span> <span class="nv">Add</span> <span class="nv">field</span> <span class="nv">school</span> <span class="nv">to</span> <span class="nv">user</span>
+      <span class="o">-</span> <span class="nv">Add</span> <span class="nv">field</span> <span class="nv">user_permissions</span> <span class="nv">to</span> <span class="nv">user</span>
+</pre></div>
+
+
+<p>似乎ok了</p>
+<p>启动网站，打开http://127.0.0.1:8000/admin/easydict/school/，报错：</p>
+<div class="highlight"><pre><span></span><span class="k">no</span> <span class="n">such</span> <span class="k">column</span><span class="p">:</span> <span class="n">easydict_school</span><span class="p">.</span><span class="n">telephone</span>
+</pre></div>
+
+
+<p>奇怪了，难道是数据库的easydict一直没有成功吗？打开dbshell，看一下easydict.school的定义：</p>
+<div class="highlight"><pre><span></span><span class="n">sqlite</span><span class="o">&gt;</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">sqlite_master</span> <span class="k">where</span> <span class="k">type</span><span class="o">=</span><span class="s1">&#39;table&#39;</span> <span class="k">and</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;easydict_school&#39;</span><span class="p">;</span>
+<span class="k">table</span><span class="o">|</span><span class="n">easydict_school</span><span class="o">|</span><span class="n">easydict_school</span><span class="o">|</span><span class="mi">28</span><span class="o">|</span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="ss">&quot;easydict_school&quot;</span> <span class="p">(</span><span class="ss">&quot;id&quot;</span> <span class="nb">integer</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="n">AUTOINCREMENT</span><span class="p">,</span> <span class="ss">&quot;name&quot;</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span> <span class="ss">&quot;address&quot;</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span> <span class="ss">&quot;telphone&quot;</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span> <span class="ss">&quot;Fax&quot;</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span> <span class="ss">&quot;website&quot;</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span> <span class="ss">&quot;description&quot;</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span> <span class="ss">&quot;manager_id&quot;</span> <span class="nb">integer</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">REFERENCES</span> <span class="ss">&quot;easydict_user&quot;</span> <span class="p">(</span><span class="ss">&quot;id&quot;</span><span class="p">)</span> <span class="k">DEFERRABLE</span> <span class="k">INITIALLY</span> <span class="k">DEFERRED</span><span class="p">)</span>
+</pre></div>
+
+
+<p>果然，还是telphone，少了一个&#8217;e&#8217;</p>
+<p>但是easydict/migrations/0001_initial里的定义是没错的</p>
+<h2>似乎找到一个问题, easydict&nbsp;一直没有迁移成功</h2>
+<p>也就是说，之前easydict/migrations下有好多脚本，到了0006，包含了model更新的记录，删掉之后重新makemigrations生成的脚本也没有作用到数据库中.&nbsp;什么原因？</p>
+<p>查看数据库中django_migrations表：</p>
+<div class="highlight"><pre><span></span><span class="n">sqlite</span><span class="o">&gt;</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">django_migrations</span><span class="p">;</span>
+<span class="mi">1</span><span class="o">|</span><span class="n">contenttypes</span><span class="o">|</span><span class="mi">0001</span><span class="n">_initial</span><span class="o">|</span><span class="mi">2018</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">28</span> <span class="mi">16</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">49</span><span class="p">.</span><span class="mi">518411</span>
+<span class="mi">2</span><span class="o">|</span><span class="n">contenttypes</span><span class="o">|</span><span class="mi">0002</span><span class="n">_remove_content_type_name</span><span class="o">|</span><span class="mi">2018</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">28</span> <span class="mi">16</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">49</span><span class="p">.</span><span class="mi">546412</span>
+<span class="mi">3</span><span class="o">|</span><span class="n">auth</span><span class="o">|</span><span class="mi">0001</span><span class="n">_initial</span><span class="o">|</span><span class="mi">2018</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">28</span> <span class="mi">16</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">49</span><span class="p">.</span><span class="mi">573414</span>
+<span class="mi">4</span><span class="o">|</span><span class="n">auth</span><span class="o">|</span><span class="mi">0002</span><span class="n">_alter_permission_name_max_length</span><span class="o">|</span><span class="mi">2018</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">28</span> <span class="mi">16</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">49</span><span class="p">.</span><span class="mi">590415</span>
+<span class="mi">5</span><span class="o">|</span><span class="n">auth</span><span class="o">|</span><span class="mi">0003</span><span class="n">_alter_user_email_max_length</span><span class="o">|</span><span class="mi">2018</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">28</span> <span class="mi">16</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">49</span><span class="p">.</span><span class="mi">601416</span>
+<span class="mi">6</span><span class="o">|</span><span class="n">auth</span><span class="o">|</span><span class="mi">0004</span><span class="n">_alter_user_username_opts</span><span class="o">|</span><span class="mi">2018</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">28</span> <span class="mi">16</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">49</span><span class="p">.</span><span class="mi">614416</span>
+<span class="mi">7</span><span class="o">|</span><span class="n">auth</span><span class="o">|</span><span class="mi">0005</span><span class="n">_alter_user_last_login_null</span><span class="o">|</span><span class="mi">2018</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">28</span> <span class="mi">16</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">49</span><span class="p">.</span><span class="mi">625417</span>
+<span class="mi">8</span><span class="o">|</span><span class="n">auth</span><span class="o">|</span><span class="mi">0006</span><span class="n">_require_contenttypes_0002</span><span class="o">|</span><span class="mi">2018</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">28</span> <span class="mi">16</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">49</span><span class="p">.</span><span class="mi">629417</span>
+<span class="mi">9</span><span class="o">|</span><span class="n">auth</span><span class="o">|</span><span class="mi">0007</span><span class="n">_alter_validators_add_error_messages</span><span class="o">|</span><span class="mi">2018</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">28</span> <span class="mi">16</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">49</span><span class="p">.</span><span class="mi">642418</span>
+<span class="mi">10</span><span class="o">|</span><span class="n">auth</span><span class="o">|</span><span class="mi">0008</span><span class="n">_alter_user_username_max_length</span><span class="o">|</span><span class="mi">2018</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">28</span> <span class="mi">16</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">49</span><span class="p">.</span><span class="mi">653419</span>
+<span class="mi">11</span><span class="o">|</span><span class="n">auth</span><span class="o">|</span><span class="mi">0009</span><span class="n">_alter_user_last_name_max_length</span><span class="o">|</span><span class="mi">2018</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">28</span> <span class="mi">16</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">49</span><span class="p">.</span><span class="mi">665419</span>
+<span class="mi">12</span><span class="o">|</span><span class="n">easydict</span><span class="o">|</span><span class="mi">0001</span><span class="n">_initial</span><span class="o">|</span><span class="mi">2018</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">28</span> <span class="mi">16</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">49</span><span class="p">.</span><span class="mi">831429</span>
+<span class="mi">13</span><span class="o">|</span><span class="k">admin</span><span class="o">|</span><span class="mi">0001</span><span class="n">_initial</span><span class="o">|</span><span class="mi">2018</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">28</span> <span class="mi">16</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">49</span><span class="p">.</span><span class="mi">857430</span>
+<span class="mi">14</span><span class="o">|</span><span class="k">admin</span><span class="o">|</span><span class="mi">0002</span><span class="n">_logentry_remove_auto_add</span><span class="o">|</span><span class="mi">2018</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">28</span> <span class="mi">16</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">49</span><span class="p">.</span><span class="mi">884432</span>
+<span class="mi">15</span><span class="o">|</span><span class="n">sessions</span><span class="o">|</span><span class="mi">0001</span><span class="n">_initial</span><span class="o">|</span><span class="mi">2018</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">28</span> <span class="mi">16</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">49</span><span class="p">.</span><span class="mi">897433</span>
+<span class="mi">16</span><span class="o">|</span><span class="k">admin</span><span class="o">|</span><span class="mi">0002</span><span class="n">_logentry</span><span class="o">|</span><span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">03</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">52</span><span class="p">.</span><span class="mi">145426</span>
+<span class="mi">17</span><span class="o">|</span><span class="k">admin</span><span class="o">|</span><span class="mi">0003</span><span class="n">_logentry_user</span><span class="o">|</span><span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">03</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">52</span><span class="p">.</span><span class="mi">163519</span>
+<span class="mi">18</span><span class="o">|</span><span class="n">auth</span><span class="o">|</span><span class="mi">0002</span><span class="n">_auto_20181008_1626</span><span class="o">|</span><span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">03</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">52</span><span class="p">.</span><span class="mi">197976</span>
+<span class="mi">19</span><span class="o">|</span><span class="n">auth</span><span class="o">|</span><span class="mi">0003</span><span class="n">_auto_20181020_0345</span><span class="o">|</span><span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">03</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">52</span><span class="p">.</span><span class="mi">211341</span>
+<span class="mi">20</span><span class="o">|</span><span class="n">auth</span><span class="o">|</span><span class="mi">0004</span><span class="n">_auto_20181028_2319</span><span class="o">|</span><span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">03</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">52</span><span class="p">.</span><span class="mi">223982</span>
+<span class="mi">21</span><span class="o">|</span><span class="n">easyadmin</span><span class="o">|</span><span class="mi">0001</span><span class="n">_initial</span><span class="o">|</span><span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">03</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">52</span><span class="p">.</span><span class="mi">237841</span>
+<span class="mi">22</span><span class="o">|</span><span class="n">easyadmin</span><span class="o">|</span><span class="mi">0002</span><span class="n">_charge_manageractlog</span><span class="o">|</span><span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">03</span> <span class="mi">13</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">25</span><span class="p">.</span><span class="mi">042510</span>
+<span class="mi">23</span><span class="o">|</span><span class="n">sessions</span><span class="o">|</span><span class="mi">0002</span><span class="n">_auto_20181008_1626</span><span class="o">|</span><span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">03</span> <span class="mi">13</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">25</span><span class="p">.</span><span class="mi">055024</span>
+<span class="mi">24</span><span class="o">|</span><span class="n">easydict</span><span class="o">|</span><span class="mi">0002</span><span class="n">_auto_20181103_1342</span><span class="o">|</span><span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">03</span> <span class="mi">14</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">10</span><span class="p">.</span><span class="mi">146670</span>
+</pre></div>
+
+
+<p>也就是说，这里记录了easydict/0001_initial已经迁移过了，在migrate的时候，新makemigrations生成的0001_initial是不会执行的。</p>
+<p>怎么解决，删掉这条记录？</p>
+<div class="highlight"><pre><span></span><span class="n">root</span><span class="nv">@X250</span><span class="err">:</span><span class="o">~/</span><span class="mi">118</span><span class="o">/</span><span class="n">yiji</span><span class="p">.</span><span class="n">git</span><span class="err">#</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="n">manage</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="n">migrate</span><span class="w"> </span><span class="n">easydict</span><span class="w"></span>
+<span class="n">Traceback</span><span class="w"> </span><span class="p">(</span><span class="n">most</span><span class="w"> </span><span class="n">recent</span><span class="w"> </span><span class="k">call</span><span class="w"> </span><span class="k">last</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">     </span><span class="n">django</span><span class="p">.</span><span class="n">db</span><span class="p">.</span><span class="n">migrations</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="nl">InconsistentMigrationHistory</span><span class="p">:</span><span class="w"> </span><span class="n">Migration</span><span class="w"> </span><span class="n">easydict</span><span class="mf">.0002</span><span class="n">_auto_20181103_1342</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">applied</span><span class="w"> </span><span class="k">before</span><span class="w"> </span><span class="n">its</span><span class="w"> </span><span class="n">dependency</span><span class="w"> </span><span class="n">easydict</span><span class="mf">.0001</span><span class="n">_initial</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="s1">&#39;default&#39;</span><span class="p">.</span><span class="w"></span>
+</pre></div>
+
+
+<p>还不行，删掉整个表数据。&nbsp;然后，</p>
+<div class="highlight"><pre><span></span><span class="nv">root</span>@<span class="nv">X250</span>:<span class="o">~/</span><span class="mi">118</span><span class="o">/</span><span class="nv">yiji</span>.<span class="nv">git</span># <span class="nv">python</span> <span class="nv">manage</span>.<span class="nv">py</span> <span class="nv">migrate</span> <span class="nv">easydict</span>
+<span class="nv">Operations</span> <span class="nv">to</span> <span class="nv">perform</span>:
+  <span class="nv">Apply</span> <span class="nv">all</span> <span class="nv">migrations</span>: <span class="nv">easydict</span>
+  <span class="nv">Running</span> <span class="nv">migrations</span>:
+  <span class="nv">Applying</span> <span class="nv">contenttypes</span>.<span class="mi">0001</span><span class="nv">_initial</span>...<span class="nv">Traceback</span> <span class="ss">(</span><span class="nv">most</span> <span class="nv">recent</span> <span class="k">call</span> <span class="nl">last</span><span class="ss">)</span>:
+  <span class="nv">File</span> <span class="s2">&quot;</span><span class="s">/usr/local/lib/python3.6/dist-packages/Django-2.1.1-py3.6.egg/django/db/backends/utils.py</span><span class="s2">&quot;</span>, <span class="nv">line</span> <span class="mi">83</span>, <span class="nv">in</span> <span class="nv">_execute</span>
+  <span class="k">return</span> <span class="nv">self</span>.<span class="nv">cursor</span>.<span class="nv">execute</span><span class="ss">(</span><span class="nv">sql</span><span class="ss">)</span>
+  <span class="nv">File</span> <span class="s2">&quot;</span><span class="s">/usr/local/lib/python3.6/dist-packages/Django-2.1.1-py3.6.egg/django/db/backends/sqlite3/base.py</span><span class="s2">&quot;</span>, <span class="nv">line</span> <span class="mi">294</span>, <span class="nv">in</span> <span class="nv">execute</span>
+  <span class="k">return</span> <span class="nv">Database</span>.<span class="nv">Cursor</span>.<span class="nv">execute</span><span class="ss">(</span><span class="nv">self</span>, <span class="nv">query</span><span class="ss">)</span>
+    <span class="nv">sqlite3</span>.<span class="nv">OperationalError</span>: <span class="nv">table</span> <span class="s2">&quot;</span><span class="s">django_content_type</span><span class="s2">&quot;</span> <span class="nv">already</span> <span class="nv">exists</span>
+</pre></div>
+
+
+<p>好吧，再来：</p>
+<div class="highlight"><pre><span></span><span class="n">root</span><span class="nv">@X250</span><span class="err">:</span><span class="o">~/</span><span class="mi">118</span><span class="o">/</span><span class="n">yiji</span><span class="p">.</span><span class="n">git</span><span class="err">#</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="n">manage</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="n">migrate</span><span class="w"> </span><span class="n">easydict</span><span class="w"> </span><span class="c1">--fake-initial</span>
+<span class="n">Operations</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="nl">perform</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="n">Apply</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="nl">migrations</span><span class="p">:</span><span class="w"> </span><span class="n">easydict</span><span class="w"></span>
+<span class="w">  </span><span class="n">Running</span><span class="w"> </span><span class="nl">migrations</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="n">Applying</span><span class="w"> </span><span class="n">contenttypes</span><span class="mf">.0001</span><span class="n">_initial</span><span class="p">...</span><span class="w"> </span><span class="n">FAKED</span><span class="w"></span>
+<span class="w">  </span><span class="n">Applying</span><span class="w"> </span><span class="n">contenttypes</span><span class="mf">.0002</span><span class="n">_remove_content_type_name</span><span class="p">...</span><span class="w"> </span><span class="n">OK</span><span class="w"></span>
+<span class="w">  </span><span class="n">Applying</span><span class="w"> </span><span class="n">auth</span><span class="mf">.0001</span><span class="n">_initial</span><span class="p">...</span><span class="w"> </span><span class="n">OK</span><span class="w"></span>
+<span class="w">  </span><span class="n">Applying</span><span class="w"> </span><span class="n">auth</span><span class="mf">.0002</span><span class="n">_auto_20181008_1626</span><span class="p">...</span><span class="w"> </span><span class="n">FAKED</span><span class="w"></span>
+<span class="w">  </span><span class="n">Applying</span><span class="w"> </span><span class="n">auth</span><span class="mf">.0003</span><span class="n">_auto_20181020_0345</span><span class="p">...</span><span class="w"> </span><span class="n">OK</span><span class="w"></span>
+<span class="w">  </span><span class="n">Applying</span><span class="w"> </span><span class="n">auth</span><span class="mf">.0004</span><span class="n">_auto_20181028_2319</span><span class="p">...</span><span class="w"> </span><span class="n">OK</span><span class="w"></span>
+<span class="w">  </span><span class="n">Applying</span><span class="w"> </span><span class="n">easydict</span><span class="mf">.0001</span><span class="n">_initial</span><span class="p">...</span><span class="w"> </span><span class="n">FAKED</span><span class="w"></span>
+<span class="w">  </span><span class="n">Applying</span><span class="w"> </span><span class="n">easydict</span><span class="mf">.0002</span><span class="n">_auto_20181103_1342</span><span class="p">...</span><span class="w"> </span><span class="n">OK</span><span class="w"></span>
+</pre></div>
+
+
+<p>好了，easydict总算迁移成功。&#8230;</p>
+<p>** 为什么migrate easydict&nbsp;还会迁移auth和contecttypes呢？</p>
+<p>可能是依赖关系导致.</p>
+<h2>等等， easydict.0001_initial是<code>FAKED</code>，也就是没有真的迁移？！</h2>
+<p>去数据库查，果真没有更新，折腾半天都是瞎折腾。。。&nbsp;试试：</p>
+<div class="highlight"><pre><span></span><span class="n">root</span><span class="nv">@X250</span><span class="err">:</span><span class="o">~/</span><span class="mi">118</span><span class="o">/</span><span class="n">yiji</span><span class="p">.</span><span class="n">git</span><span class="err">#</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="n">manage</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="n">migrate</span><span class="w"> </span><span class="n">easydict</span><span class="w"></span>
+<span class="p">....</span><span class="w"></span>
+
+<span class="n">django</span><span class="p">.</span><span class="n">db</span><span class="p">.</span><span class="n">utils</span><span class="p">.</span><span class="nl">OperationalError</span><span class="p">:</span><span class="w"> </span><span class="nc">table</span><span class="w"> </span><span class="ss">&quot;easydict_user&quot;</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="ow">exists</span><span class="w"></span>
+</pre></div>
+
+
+<p>总结一下：<code>数据库已经有一个easydict_user表了，如我我们想更新这个表的定义，同时又想保留其数据，一种方法是手动修改数据库各字段定义，比如使用dbshell工具；二种方法是，使用Django的migrate机制，保留每次makemigrations产生的脚本，这样你migrate的时候就可以只更新你修改的部分，也就是要保留这个migrations脚本文件，不然就得自己写。如果不保留这个migrations脚本，每次都删掉重新makemigrations，那么Django会认为，你是要重建一个表，那就与数据库中现有的表冲突了</code></p>
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="/blog/build-django-on-godady-virtual-host.html">build Django on Godady virtual&nbsp;host</a></li>
+    </ul>
+</section>
+    <hr />
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style">
+            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+            <a class="addthis_button_tweet"></a>
+            <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    </div>
+    <!-- AddThis Button END -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+    <p>
+      <strong>About zqlai</strong><br/>
+        A simple guy!
+    </p>
+</div><!-- Sidebar -->
+<section class="well well-sm">
+  <ul class="list-group list-group-flush">
+
+<!-- Sidebar/Social -->
+<li class="list-group-item">
+  <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+  <ul class="list-group" id="social">
+    <li class="list-group-item"><a href="https://www.zhihu.com/people/lai-zq/activities"><i class="fa fa-zhihu(知乎)-square fa-lg"></i> Zhihu(知乎)</a></li>
+    <li class="list-group-item"><a href="https://scholar.google.com/citations?user=m9_qnBIAAAAJ&hl=en"><i class="fa fa-google-scholar-square fa-lg"></i> Google Scholar</a></li>
+  </ul>
+</li>
+<!-- End Sidebar/Social -->
+
+<!-- Sidebar/Recent Posts -->
+<li class="list-group-item">
+  <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
+  <ul class="list-group" id="recentposts">
+    <li class="list-group-item"><a href="/blog/see-the-scence-at-500am-again.html">See the scence at 5:00am&nbsp;again</a></li>
+    <li class="list-group-item"><a href="/blog/setting-for-ssh-login-without-password-input.html">setting for ssh login without password&nbsp;input</a></li>
+    <li class="list-group-item"><a href="/blog/misc.html">misc</a></li>
+    <li class="list-group-item"><a href="/blog/horovod works.html">horovod on <span class="caps">TH</span>-1A works with mnist&nbsp;example</a></li>
+    <li class="list-group-item"><a href="/blog/resnet-on-horovod-with-multi-gpus.html">resnet on horovod with multi&nbsp;GPUs</a></li>
+  </ul>
+</li>
+<!-- End Sidebar/Recent Posts -->
+
+<!-- Sidebar/Categories -->
+<li class="list-group-item">
+  <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Categories</span></h4>
+  <ul class="list-group" id="categories">
+    <li class="list-group-item">
+      <a href="/category/django.html"><i class="fa fa-folder-open fa-lg"></i>Django</a>
+    </li>
+    <li class="list-group-item">
+      <a href="/category/life.html"><i class="fa fa-folder-open fa-lg"></i>life</a>
+    </li>
+    <li class="list-group-item">
+      <a href="/category/linux.html"><i class="fa fa-folder-open fa-lg"></i>Linux</a>
+    </li>
+    <li class="list-group-item">
+      <a href="/category/misc.html"><i class="fa fa-folder-open fa-lg"></i>misc</a>
+    </li>
+    <li class="list-group-item">
+      <a href="/category/ml.html"><i class="fa fa-folder-open fa-lg"></i>ML</a>
+    </li>
+    <li class="list-group-item">
+      <a href="/category/note.html"><i class="fa fa-folder-open fa-lg"></i>note</a>
+    </li>
+    <li class="list-group-item">
+      <a href="/category/python.html"><i class="fa fa-folder-open fa-lg"></i>Python</a>
+    </li>
+  </ul>
+</li>
+<!-- End Sidebar/Categories -->
+
+<!-- Sidebar/Tag Cloud -->
+<li class="list-group-item">
+  <a href="/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+  <ul class="list-group " id="tags">
+    <li class="list-group-item tag-1">
+      <a href="/tag/django.html">Django</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="/tag/pelican.html">pelican</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="/tag/publishing.html">publishing</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/fighting.html">fighting</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/horovod.html">horovod</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/horovod-th-1a.html">horovod TH-1A</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/life.html">life</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/photo.html">photo</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/ssh.html">ssh</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/thought.html">thought</a>
+    </li>
+  </ul>
+</li>
+<!-- End Sidebar/Tag Cloud -->
+
+<!-- Sidebar/Github -->
+<li class="list-group-item">
+  <h4><i class="fa fa-github fa-lg"></i><span class="icon-label">GitHub Repos</span></h4>
+  <div id="gh_repos">
+    <p class="list-group-item">Status updating...</p>
+  </div>
+  <a href="https://github.com/zqlai">@zqlai</a> on GitHub
+</li>
+<!-- End Sidebar/Github -->
+
+<!-- Sidebar/Links -->
+<li class="list-group-item">
+  <h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+  <ul class="list-group" id="links">
+    <li class="list-group-item">
+      <a href="http://getpelican.com/" target="_blank">Pelican</a>
+    </li>
+    <li class="list-group-item">
+      <a href="http://python.org/" target="_blank">Python.org</a>
+    </li>
+    <li class="list-group-item">
+      <a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a>
+    </li>
+  </ul>
+</li>
+<!-- End Sidebar/Links -->
+  </ul>
+</section>
+<!-- End Sidebar -->            </aside>
+        </div>
+    </div>
+</div>
+<!-- End Content Container -->
+
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2019 zqlai
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>                <p><small>  <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="/theme/js/respond.min.js"></script>
+
+
+
+<!-- GitHub JS Code -->
+<script type="text/javascript">
+$(document).ready(function () {
+  if (!window.jXHR) {
+    var jxhr = document.createElement('script');
+    jxhr.type = 'text/javascript';
+    jxhr.src = '/theme/js/jXHR.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(jxhr, s);
+  }
+
+  github.showRepos({
+    user: 'zqlai',
+    count: 3,
+    skip_forks: true,
+    target: '#gh_repos'
+  });
+});
+</script>
+<script src="/theme/js/github.js" type="text/javascript"></script>
+<!-- End GitHub JS Code -->
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-127465699-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- End Google Analytics Code -->
+
+
+        <script type="text/javascript">var addthis_config = {"data_track_addressbar": true};</script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5bc35adaf039c73e"></script>
+</body>
+</html>

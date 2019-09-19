@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>QBlog</title>
+    <title>ssh - QBlog</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,8 +9,9 @@
 
 
 
-<link rel="canonical" href="">
-        <meta name="author" content="zqlai" />
+
+    <meta name="author" content="zqlai" />
+    <meta name="keywords" content="ssh" />
 
     <!-- Open Graph tags -->
         <meta property="og:site_name" content="QBlog" />
@@ -100,41 +101,6 @@ QBlog            </a>
     <div class="row">
         <div class="col-sm-9">
             <article>
-                <h2><a href="/blog/see-the-scence-at-500am-again.html">See the scence at 5:00am&nbsp;again</a></h2>
-                    <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2019-09-20T00:53:16.180198+08:00"> 周五, 20 九月 2019</time>
-    </span>
-
-
-            <span class="label label-default">By</span>
-            <a href="/author/zqlai.html"><i class="fa fa-user"></i> zqlai</a>
-
-        <span class="label label-default">Category</span>
-        <a href="/category/life.html">life</a>
-
-
-<span class="label label-default">Tags</span>
-	<a href="/tag/thought.html">thought</a>
-        /
-	<a href="/tag/fighting.html">fighting</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                <div class="summary"><p>Went to bed at 5:00am last&nbsp;night</p>
-<p>or, this&nbsp;morning</p>
-<p>Saw the dawn scene of Changsha&nbsp;again</p>
-<p>alone, not&nbsp;lonely</p>
-<p>tired, but&nbsp;exited</p>
-<p>fell into sleep with hope and&nbsp;prospect</p>
-<p>with more&nbsp;responsibilty</p>
-<p>for the engels by my&nbsp;side</p>
-                    <a class="btn btn-default btn-xs" href="/blog/see-the-scence-at-500am-again.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
                 <h2><a href="/blog/setting-for-ssh-login-without-password-input.html">setting for ssh login without password&nbsp;input</a></h2>
                     <div class="well well-sm">
 <footer class="post-info">
@@ -172,129 +138,7 @@ QBlog            </a>
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="/blog/misc.html">misc</a></h2>
-                    <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2019-09-20T00:53:16.179198+08:00"> 周五, 20 九月 2019</time>
-    </span>
 
-
-            <span class="label label-default">By</span>
-            <a href="/author/zqlai.html"><i class="fa fa-user"></i> zqlai</a>
-
-        <span class="label label-default">Category</span>
-        <a href="/category/misc.html">misc</a>
-
-
-<span class="label label-default">Tags</span>
-	<a href="/tag/life.html">life</a>
-        /
-	<a href="/tag/photo.html">photo</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                <div class="summary"><p>Short version for index and&nbsp;feeds</p>
-                    <a class="btn btn-default btn-xs" href="/blog/misc.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/blog/horovod works.html">horovod on <span class="caps">TH</span>-1A works with mnist&nbsp;example</a></h2>
-                    <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2019-09-20T00:53:16.178198+08:00"> 周五, 20 九月 2019</time>
-    </span>
-
-
-            <span class="label label-default">By</span>
-            <a href="/author/zqlai.html"><i class="fa fa-user"></i> zqlai</a>
-
-        <span class="label label-default">Category</span>
-        <a href="/category/note.html">note</a>
-
-
-<span class="label label-default">Tags</span>
-	<a href="/tag/horovod-th-1a.html">horovod TH-1A</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                <div class="summary"><h2>step to launch the mnist training&nbsp;task</h2>
-<ul>
-<li>1.</li>
-</ul>
-<div class="highlight"><pre><span></span>login the th-es-ln0
-</pre></div>
-
-
-<ul>
-<li>2.</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="nb">source</span> zqlai/.bashrc
-</pre></div>
-
-
-<ul>
-<li>3.allocate 2 <span class="caps">GPU</span> nodes with 4&nbsp;processes</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="n">yhalloc</span> <span class="o">-</span><span class="n">N2</span> <span class="o">-</span><span class="n">n4</span> <span class="o">-</span><span class="n">pTH_GPU</span>
-</pre></div>
-
-
-<ul>
-<li>4.check the allocated job and responsive&nbsp;nodes</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="n">yhq</span>
-</pre></div>
-
-
-<ul>
-<li>5.load the task using&nbsp;mpirun</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="nb">cd</span> horovod
-mpirun -np <span class="m">4</span> -H gn6,gn7 …</pre></div>
-                    <a class="btn btn-default btn-xs" href="/blog/horovod works.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/blog/resnet-on-horovod-with-multi-gpus.html">resnet on horovod with multi&nbsp;GPUs</a></h2>
-                    <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2019-09-20T00:53:16.178198+08:00"> 周五, 20 九月 2019</time>
-    </span>
-
-
-            <span class="label label-default">By</span>
-            <a href="/author/zqlai.html"><i class="fa fa-user"></i> zqlai</a>
-
-        <span class="label label-default">Category</span>
-        <a href="/category/ml.html">ML</a>
-
-
-<span class="label label-default">Tags</span>
-	<a href="/tag/horovod.html">horovod</a>
-        /
-	<a href="/tag/resnet.html">resnet</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                <div class="summary"><div class="highlight"><pre><span></span><span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">15</span> <span class="mi">23</span>:<span class="mi">37</span>:<span class="mi">49</span>.<span class="mi">001918</span>: <span class="nv">I</span> <span class="nv">tensorflow</span><span class="o">/</span><span class="nv">core</span><span class="o">/</span><span class="nv">common_runtime</span><span class="o">/</span><span class="nv">gpu</span><span class="o">/</span><span class="nv">gpu_device</span>.<span class="nv">cc</span>:<span class="mi">1490</span>] <span class="nv">Adding</span> <span class="nv">visible</span> <span class="nv">gpu</span> <span class="nv">devices</span>: <span class="mi">1</span>
-<span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">15</span> <span class="mi">23</span>:<span class="mi">37</span>:<span class="mi">49</span>.<span class="mi">001953</span>: <span class="nv">I</span> <span class="nv">tensorflow</span><span class="o">/</span><span class="nv">core</span><span class="o">/</span><span class="nv">common_runtime</span><span class="o">/</span><span class="nv">gpu</span><span class="o">/</span><span class="nv">gpu_device</span>.<span class="nv">cc</span>:<span class="mi">971</span>] <span class="nv">Device</span> <span class="nv">interconnect</span> <span class="nv">StreamExecutor</span> <span class="nv">with</span> <span class="nv">strength</span> <span class="mi">1</span> <span class="nv">edge</span> <span class="nv">matrix</span>:
-<span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">15</span> <span class="mi">23</span>:<span class="mi">37</span>:<span class="mi">49</span>.<span class="mi">001960 …</span></pre></div>
-                    <a class="btn btn-default btn-xs" href="/blog/resnet-on-horovod-with-multi-gpus.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-
-        <ul class="pager">
-                <li class="previous disabled"><a href="#">&larr; Newer</a></li>
-                <li class="next"><a
-                        href="/index2.html">Older &rarr;</a></li>
-        </ul>
         </div>
         <div class="col-sm-3" id="sidebar">
             <aside>
@@ -321,11 +165,7 @@ mpirun -np <span class="m">4</span> -H gn6,gn7 …</pre></div>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
   <ul class="list-group" id="recentposts">
-    <li class="list-group-item"><a href="/blog/see-the-scence-at-500am-again.html">See the scence at 5:00am&nbsp;again</a></li>
     <li class="list-group-item"><a href="/blog/setting-for-ssh-login-without-password-input.html">setting for ssh login without password&nbsp;input</a></li>
-    <li class="list-group-item"><a href="/blog/misc.html">misc</a></li>
-    <li class="list-group-item"><a href="/blog/horovod works.html">horovod on <span class="caps">TH</span>-1A works with mnist&nbsp;example</a></li>
-    <li class="list-group-item"><a href="/blog/resnet-on-horovod-with-multi-gpus.html">resnet on horovod with multi&nbsp;GPUs</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Recent Posts -->

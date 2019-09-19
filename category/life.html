@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>QBlog</title>
+    <title>life - QBlog</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,8 +9,9 @@
 
 
 
-<link rel="canonical" href="">
-        <meta name="author" content="zqlai" />
+
+    <meta name="author" content="zqlai" />
+    <meta name="keywords" content="life" />
 
     <!-- Open Graph tags -->
         <meta property="og:site_name" content="QBlog" />
@@ -33,7 +34,8 @@
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
               title="QBlog ATOM Feed"/>
 
-
+        <link href="/feeds/life.atom.xml" type="application/atom+xml" rel="alternate"
+              title="QBlog life ATOM Feed"/>
 </head>
 <body>
 
@@ -60,7 +62,7 @@ QBlog            </a>
                         <li >
                             <a href="/category/django.html">Django</a>
                         </li>
-                        <li >
+                        <li class="active">
                             <a href="/category/life.html">Life</a>
                         </li>
                         <li >
@@ -135,12 +137,12 @@ QBlog            </a>
             </article>
             <hr/>
             <article>
-                <h2><a href="/blog/setting-for-ssh-login-without-password-input.html">setting for ssh login without password&nbsp;input</a></h2>
+                <h2><a href="/blog/build-django-on-godady-virtual-host.html">build Django on Godady virtual&nbsp;host</a></h2>
                     <div class="well well-sm">
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2019-09-20T00:53:16.180198+08:00"> 周五, 20 九月 2019</time>
+        <i class="fa fa-calendar"></i><time datetime="2019-09-20T00:53:16.175198+08:00"> 周五, 20 九月 2019</time>
     </span>
 
 
@@ -148,153 +150,39 @@ QBlog            </a>
             <a href="/author/zqlai.html"><i class="fa fa-user"></i> zqlai</a>
 
         <span class="label label-default">Category</span>
-        <a href="/category/linux.html">Linux</a>
+        <a href="/category/life.html">life</a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="/tag/ssh.html">ssh</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                <div class="summary"><p>just two&nbsp;steps</p>
-<p>1.generate key pairs if not&nbsp;exist</p>
-<div class="highlight"><pre><span></span><span class="n">ssh</span><span class="o">-</span><span class="n">keygen</span> <span class="o">-</span><span class="n">t</span> <span class="n">rsa</span>
-</pre></div>
-
-
-<p>If success, you will find <code>id_rsa</code> and <code>id_rsa.pub</code> in the <code>~/.ssh/</code> dir</p>
-<p>2.copy the public key to the server you want to&nbsp;login</p>
-<div class="highlight"><pre><span></span><span class="n">ssh</span><span class="o">-</span><span class="n">copy</span><span class="o">-</span><span class="n">id</span><span class="w"> </span><span class="n">username</span><span class="nv">@hostname</span><span class="w"></span>
-</pre></div>
-
-
-<p>Then, it will authorize your permission …</p>
-                    <a class="btn btn-default btn-xs" href="/blog/setting-for-ssh-login-without-password-input.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/blog/misc.html">misc</a></h2>
-                    <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2019-09-20T00:53:16.179198+08:00"> 周五, 20 九月 2019</time>
-    </span>
-
-
-            <span class="label label-default">By</span>
-            <a href="/author/zqlai.html"><i class="fa fa-user"></i> zqlai</a>
-
-        <span class="label label-default">Category</span>
-        <a href="/category/misc.html">misc</a>
-
-
-<span class="label label-default">Tags</span>
-	<a href="/tag/life.html">life</a>
+	<a href="/tag/django.html">Django</a>
         /
-	<a href="/tag/photo.html">photo</a>
+	<a href="/tag/godady.html">Godady</a>
     
 </footer><!-- /.post-info -->                    </div>
-                <div class="summary"><p>Short version for index and&nbsp;feeds</p>
-                    <a class="btn btn-default btn-xs" href="/blog/misc.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/blog/horovod works.html">horovod on <span class="caps">TH</span>-1A works with mnist&nbsp;example</a></h2>
-                    <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2019-09-20T00:53:16.178198+08:00"> 周五, 20 九月 2019</time>
-    </span>
-
-
-            <span class="label label-default">By</span>
-            <a href="/author/zqlai.html"><i class="fa fa-user"></i> zqlai</a>
-
-        <span class="label label-default">Category</span>
-        <a href="/category/note.html">note</a>
-
-
-<span class="label label-default">Tags</span>
-	<a href="/tag/horovod-th-1a.html">horovod TH-1A</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                <div class="summary"><h2>step to launch the mnist training&nbsp;task</h2>
-<ul>
-<li>1.</li>
-</ul>
-<div class="highlight"><pre><span></span>login the th-es-ln0
+                <div class="summary"><p>just get a Godady virtual host, <span class="caps">WITHOUT</span> pip tool, only&nbsp;python2.6</p>
+<p>let&#8217;s&nbsp;begin</p>
+<ol>
+<li>download source of python3.7.0 and unzip&nbsp;it</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">python_source_dir</span>
+<span class="p">.</span><span class="o">/</span><span class="n">configure</span>
+<span class="n">make</span>
+<span class="n">make</span> <span class="n">install</span>
 </pre></div>
 
 
-<ul>
-<li>2.</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="nb">source</span> zqlai/.bashrc
+<p>when <code>make install</code>, an error came&nbsp;out:</p>
+<div class="highlight"><pre><span></span>      <span class="kn">from</span> <span class="nn">_ctypes</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Structure</span><span class="p">,</span> <span class="n">Array</span>
+      <span class="ne">ImportError</span><span class="p">:</span> <span class="n">No</span> <span class="n">module</span> <span class="n">named</span> <span class="s1">&#39;_ctypes&#39;</span>
 </pre></div>
 
 
-<ul>
-<li>3.allocate 2 <span class="caps">GPU</span> nodes with 4&nbsp;processes</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="n">yhalloc</span> <span class="o">-</span><span class="n">N2</span> <span class="o">-</span><span class="n">n4</span> <span class="o">-</span><span class="n">pTH_GPU</span>
-</pre></div>
-
-
-<ul>
-<li>4.check the allocated job and responsive&nbsp;nodes</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="n">yhq</span>
-</pre></div>
-
-
-<ul>
-<li>5.load the task using&nbsp;mpirun</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="nb">cd</span> horovod
-mpirun -np <span class="m">4</span> -H gn6,gn7 …</pre></div>
-                    <a class="btn btn-default btn-xs" href="/blog/horovod works.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/blog/resnet-on-horovod-with-multi-gpus.html">resnet on horovod with multi&nbsp;GPUs</a></h2>
-                    <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2019-09-20T00:53:16.178198+08:00"> 周五, 20 九月 2019</time>
-    </span>
-
-
-            <span class="label label-default">By</span>
-            <a href="/author/zqlai.html"><i class="fa fa-user"></i> zqlai</a>
-
-        <span class="label label-default">Category</span>
-        <a href="/category/ml.html">ML</a>
-
-
-<span class="label label-default">Tags</span>
-	<a href="/tag/horovod.html">horovod</a>
-        /
-	<a href="/tag/resnet.html">resnet</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                <div class="summary"><div class="highlight"><pre><span></span><span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">15</span> <span class="mi">23</span>:<span class="mi">37</span>:<span class="mi">49</span>.<span class="mi">001918</span>: <span class="nv">I</span> <span class="nv">tensorflow</span><span class="o">/</span><span class="nv">core</span><span class="o">/</span><span class="nv">common_runtime</span><span class="o">/</span><span class="nv">gpu</span><span class="o">/</span><span class="nv">gpu_device</span>.<span class="nv">cc</span>:<span class="mi">1490</span>] <span class="nv">Adding</span> <span class="nv">visible</span> <span class="nv">gpu</span> <span class="nv">devices</span>: <span class="mi">1</span>
-<span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">15</span> <span class="mi">23</span>:<span class="mi">37</span>:<span class="mi">49</span>.<span class="mi">001953</span>: <span class="nv">I</span> <span class="nv">tensorflow</span><span class="o">/</span><span class="nv">core</span><span class="o">/</span><span class="nv">common_runtime</span><span class="o">/</span><span class="nv">gpu</span><span class="o">/</span><span class="nv">gpu_device</span>.<span class="nv">cc</span>:<span class="mi">971</span>] <span class="nv">Device</span> <span class="nv">interconnect</span> <span class="nv">StreamExecutor</span> <span class="nv">with</span> <span class="nv">strength</span> <span class="mi">1</span> <span class="nv">edge</span> <span class="nv">matrix</span>:
-<span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">15</span> <span class="mi">23</span>:<span class="mi">37</span>:<span class="mi">49</span>.<span class="mi">001960 …</span></pre></div>
-                    <a class="btn btn-default btn-xs" href="/blog/resnet-on-horovod-with-multi-gpus.html">more ...</a>
+<p>Googling it …</p>
+                    <a class="btn btn-default btn-xs" href="/blog/build-django-on-godady-virtual-host.html">more ...</a>
                 </div>
             </article>
             <hr/>
 
-        <ul class="pager">
-                <li class="previous disabled"><a href="#">&larr; Newer</a></li>
-                <li class="next"><a
-                        href="/index2.html">Older &rarr;</a></li>
-        </ul>
         </div>
         <div class="col-sm-3" id="sidebar">
             <aside>
@@ -322,10 +210,7 @@ mpirun -np <span class="m">4</span> -H gn6,gn7 …</pre></div>
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
   <ul class="list-group" id="recentposts">
     <li class="list-group-item"><a href="/blog/see-the-scence-at-500am-again.html">See the scence at 5:00am&nbsp;again</a></li>
-    <li class="list-group-item"><a href="/blog/setting-for-ssh-login-without-password-input.html">setting for ssh login without password&nbsp;input</a></li>
-    <li class="list-group-item"><a href="/blog/misc.html">misc</a></li>
-    <li class="list-group-item"><a href="/blog/horovod works.html">horovod on <span class="caps">TH</span>-1A works with mnist&nbsp;example</a></li>
-    <li class="list-group-item"><a href="/blog/resnet-on-horovod-with-multi-gpus.html">resnet on horovod with multi&nbsp;GPUs</a></li>
+    <li class="list-group-item"><a href="/blog/build-django-on-godady-virtual-host.html">build Django on Godady virtual&nbsp;host</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Recent Posts -->

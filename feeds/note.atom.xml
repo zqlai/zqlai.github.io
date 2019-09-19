@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>QBlog - note</title><link href="/" rel="alternate"></link><link href="/feeds/note.atom.xml" rel="self"></link><id>/</id><updated>2019-09-20T00:53:16+08:00</updated><entry><title>horovod on TH-1A works with mnist example</title><link href="/blog/horovod%20works.html" rel="alternate"></link><published>2019-09-20T00:53:16+08:00</published><updated>2019-09-20T00:53:16+08:00</updated><author><name>zqlai</name></author><id>tag:None,2019-09-20:/blog/horovod works.html</id><summary type="html">&lt;h2&gt;step to launch the mnist training&amp;nbsp;task&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;1.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;login the th-es-ln0
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;2.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;source&lt;/span&gt; zqlai/.bashrc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;3.allocate 2 &lt;span class="caps"&gt;GPU&lt;/span&gt; nodes with 4&amp;nbsp;processes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;yhalloc&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;N2&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n4&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pTH_GPU&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;4.check the allocated job and responsive&amp;nbsp;nodes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;yhq&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;5.load the task using&amp;nbsp;mpirun&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; horovod
+mpirun -np &lt;span class="m"&gt;4&lt;/span&gt; -H gn6,gn7 …&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;h2&gt;step to launch the mnist training&amp;nbsp;task&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;1.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;login the th-es-ln0
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;2.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;source&lt;/span&gt; zqlai/.bashrc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;3.allocate 2 &lt;span class="caps"&gt;GPU&lt;/span&gt; nodes with 4&amp;nbsp;processes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;yhalloc&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;N2&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n4&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pTH_GPU&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;4.check the allocated job and responsive&amp;nbsp;nodes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;yhq&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;5.load the task using&amp;nbsp;mpirun&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; horovod
+mpirun -np &lt;span class="m"&gt;4&lt;/span&gt; -H gn6,gn7 python examples/tensorflow_mnist.py
+&lt;/pre&gt;&lt;/div&gt;</content><category term="horovod TH-1A"></category></entry></feed>

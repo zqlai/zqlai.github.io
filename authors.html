@@ -40,11 +40,44 @@
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
             <a href="/" class="navbar-brand">
 QBlog            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
+                         <li><a href="/about.html">
+                             About
+                          </a></li>
+                         <li><a href="/contact.html">
+                             Contact
+                          </a></li>
+                        <li >
+                            <a href="/category/django.html">Django</a>
+                        </li>
+                        <li >
+                            <a href="/category/life.html">Life</a>
+                        </li>
+                        <li >
+                            <a href="/category/linux.html">Linux</a>
+                        </li>
+                        <li >
+                            <a href="/category/misc.html">Misc</a>
+                        </li>
+                        <li >
+                            <a href="/category/ml.html">Ml</a>
+                        </li>
+                        <li >
+                            <a href="/category/note.html">Note</a>
+                        </li>
+                        <li >
+                            <a href="/category/python.html">Python</a>
+                        </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li><span>
@@ -67,6 +100,9 @@ QBlog            </a>
     <div class="row">
         <div class="col-sm-9">
   <h1>Authors on QBlog</h1>
+        <li><a href="/author/alexis-metaireau.html">Alexis Metaireau</a> (1)</li>
+        <li><a href="/author/conan-doyle.html">Conan Doyle</a> (1)</li>
+        <li><a href="/author/zqlai.html">zqlai</a> (8)</li>
         </div>
         <div class="col-sm-3" id="sidebar">
             <aside>
@@ -93,6 +129,11 @@ QBlog            </a>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
   <ul class="list-group" id="recentposts">
+    <li class="list-group-item"><a href="/blog/see-the-scence-at-500am-again.html">See the scence at 5:00am&nbsp;again</a></li>
+    <li class="list-group-item"><a href="/blog/setting-for-ssh-login-without-password-input.html">setting for ssh login without password&nbsp;input</a></li>
+    <li class="list-group-item"><a href="/blog/misc.html">misc</a></li>
+    <li class="list-group-item"><a href="/blog/horovod works.html">horovod on <span class="caps">TH</span>-1A works with mnist&nbsp;example</a></li>
+    <li class="list-group-item"><a href="/blog/resnet-on-horovod-with-multi-gpus.html">resnet on horovod with multi&nbsp;GPUs</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Recent Posts -->
@@ -101,6 +142,27 @@ QBlog            </a>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Categories</span></h4>
   <ul class="list-group" id="categories">
+    <li class="list-group-item">
+      <a href="/category/django.html"><i class="fa fa-folder-open fa-lg"></i>Django</a>
+    </li>
+    <li class="list-group-item">
+      <a href="/category/life.html"><i class="fa fa-folder-open fa-lg"></i>life</a>
+    </li>
+    <li class="list-group-item">
+      <a href="/category/linux.html"><i class="fa fa-folder-open fa-lg"></i>Linux</a>
+    </li>
+    <li class="list-group-item">
+      <a href="/category/misc.html"><i class="fa fa-folder-open fa-lg"></i>misc</a>
+    </li>
+    <li class="list-group-item">
+      <a href="/category/ml.html"><i class="fa fa-folder-open fa-lg"></i>ML</a>
+    </li>
+    <li class="list-group-item">
+      <a href="/category/note.html"><i class="fa fa-folder-open fa-lg"></i>note</a>
+    </li>
+    <li class="list-group-item">
+      <a href="/category/python.html"><i class="fa fa-folder-open fa-lg"></i>Python</a>
+    </li>
   </ul>
 </li>
 <!-- End Sidebar/Categories -->
@@ -109,6 +171,36 @@ QBlog            </a>
 <li class="list-group-item">
   <a href="/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
   <ul class="list-group " id="tags">
+    <li class="list-group-item tag-1">
+      <a href="/tag/django.html">Django</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="/tag/pelican.html">pelican</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="/tag/publishing.html">publishing</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/fighting.html">fighting</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/horovod.html">horovod</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/horovod-th-1a.html">horovod TH-1A</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/life.html">life</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/photo.html">photo</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/ssh.html">ssh</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/thought.html">thought</a>
+    </li>
   </ul>
 </li>
 <!-- End Sidebar/Tag Cloud -->
@@ -151,7 +243,7 @@ QBlog            </a>
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy;  zqlai
+         <div class="col-xs-10">&copy; 2019 zqlai
             &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>                <p><small>  <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>

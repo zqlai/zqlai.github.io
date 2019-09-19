@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>QBlog</title>
+    <title>My super title - QBlog</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,15 +9,22 @@
 
 
 
-<link rel="canonical" href="">
-        <meta name="author" content="zqlai" />
+<link rel="canonical" href="/blog/my-super-title.html">
 
-    <!-- Open Graph tags -->
+        <meta name="author" content="Alexis Metaireau" />
+        <meta name="keywords" content="pelican,publishing" />
+        <meta name="description" content="Short version for index and feeds" />
+
         <meta property="og:site_name" content="QBlog" />
-        <meta property="og:type" content="website"/>
-        <meta property="og:title" content="QBlog"/>
-        <meta property="og:url" content=""/>
-        <meta property="og:description" content="QBlog"/>
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="My super title"/>
+        <meta property="og:url" content="/blog/my-super-title.html"/>
+        <meta property="og:description" content="Short version for index and feeds"/>
+        <meta property="article:published_time" content="2019-09-20" />
+            <meta property="article:section" content="Python" />
+            <meta property="article:tag" content="pelican" />
+            <meta property="article:tag" content="publishing" />
+            <meta property="article:author" content="Alexis Metaireau" />
 
 
 
@@ -33,7 +40,8 @@
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
               title="QBlog ATOM Feed"/>
 
-
+        <link href="/feeds/python.atom.xml" type="application/atom+xml" rel="alternate"
+              title="QBlog Python ATOM Feed"/>
 </head>
 <body>
 
@@ -75,7 +83,7 @@ QBlog            </a>
                         <li >
                             <a href="/category/note.html">Note</a>
                         </li>
-                        <li >
+                        <li class="active">
                             <a href="/category/python.html">Python</a>
                         </li>
             </ul>
@@ -99,202 +107,80 @@ QBlog            </a>
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
-            <article>
-                <h2><a href="/blog/see-the-scence-at-500am-again.html">See the scence at 5:00am&nbsp;again</a></h2>
-                    <div class="well well-sm">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/blog/my-super-title.html"
+                       rel="bookmark"
+                       title="Permalink to My super title">
+                        My super&nbsp;title
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2019-09-20T00:53:16.180198+08:00"> 周五, 20 九月 2019</time>
+        <i class="fa fa-calendar"></i><time datetime="2019-09-20T00:53:16.177198+08:00"> 周五, 20 九月 2019</time>
     </span>
 
 
             <span class="label label-default">By</span>
-            <a href="/author/zqlai.html"><i class="fa fa-user"></i> zqlai</a>
+            <a href="/author/alexis-metaireau.html"><i class="fa fa-user"></i> Alexis Metaireau</a>
 
         <span class="label label-default">Category</span>
-        <a href="/category/life.html">life</a>
+        <a href="/category/python.html">Python</a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="/tag/thought.html">thought</a>
+	<a href="/tag/pelican.html">pelican</a>
         /
-	<a href="/tag/fighting.html">fighting</a>
+	<a href="/tag/publishing.html">publishing</a>
     
 </footer><!-- /.post-info -->                    </div>
-                <div class="summary"><p>Went to bed at 5:00am last&nbsp;night</p>
-<p>or, this&nbsp;morning</p>
-<p>Saw the dawn scene of Changsha&nbsp;again</p>
-<p>alone, not&nbsp;lonely</p>
-<p>tired, but&nbsp;exited</p>
-<p>fell into sleep with hope and&nbsp;prospect</p>
-<p>with more&nbsp;responsibilty</p>
-<p>for the engels by my&nbsp;side</p>
-                    <a class="btn btn-default btn-xs" href="/blog/see-the-scence-at-500am-again.html">more ...</a>
                 </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/blog/setting-for-ssh-login-without-password-input.html">setting for ssh login without password&nbsp;input</a></h2>
-                    <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2019-09-20T00:53:16.180198+08:00"> 周五, 20 九月 2019</time>
-    </span>
+                <p>This is the content of my super blog&nbsp;post.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span> <span class="kn">as</span> <span class="nn">t</span>
 
-
-            <span class="label label-default">By</span>
-            <a href="/author/zqlai.html"><i class="fa fa-user"></i> zqlai</a>
-
-        <span class="label label-default">Category</span>
-        <a href="/category/linux.html">Linux</a>
-
-
-<span class="label label-default">Tags</span>
-	<a href="/tag/ssh.html">ssh</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                <div class="summary"><p>just two&nbsp;steps</p>
-<p>1.generate key pairs if not&nbsp;exist</p>
-<div class="highlight"><pre><span></span><span class="n">ssh</span><span class="o">-</span><span class="n">keygen</span> <span class="o">-</span><span class="n">t</span> <span class="n">rsa</span>
+<span class="n">t</span><span class="o">.</span><span class="n">strftime</span><span class="p">()</span>
 </pre></div>
 
 
-<p>If success, you will find <code>id_rsa</code> and <code>id_rsa.pub</code> in the <code>~/.ssh/</code> dir</p>
-<p>2.copy the public key to the server you want to&nbsp;login</p>
-<div class="highlight"><pre><span></span><span class="n">ssh</span><span class="o">-</span><span class="n">copy</span><span class="o">-</span><span class="n">id</span><span class="w"> </span><span class="n">username</span><span class="nv">@hostname</span><span class="w"></span>
+<hr>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span> <span class="kn">as</span> <span class="nn">t</span>
+<span class="n">t</span><span class="o">.</span><span class="n">strftime</span><span class="p">()</span>
 </pre></div>
 
 
-<p>Then, it will authorize your permission …</p>
-                    <a class="btn btn-default btn-xs" href="/blog/setting-for-ssh-login-without-password-input.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/blog/misc.html">misc</a></h2>
-                    <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2019-09-20T00:53:16.179198+08:00"> 周五, 20 九月 2019</time>
-    </span>
+<hr>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;lib.h&gt;</span><span class="cp"></span>
 
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
 
-            <span class="label label-default">By</span>
-            <a href="/author/zqlai.html"><i class="fa fa-user"></i> zqlai</a>
-
-        <span class="label label-default">Category</span>
-        <a href="/category/misc.html">misc</a>
-
-
-<span class="label label-default">Tags</span>
-	<a href="/tag/life.html">life</a>
-        /
-	<a href="/tag/photo.html">photo</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                <div class="summary"><p>Short version for index and&nbsp;feeds</p>
-                    <a class="btn btn-default btn-xs" href="/blog/misc.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/blog/horovod works.html">horovod on <span class="caps">TH</span>-1A works with mnist&nbsp;example</a></h2>
-                    <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2019-09-20T00:53:16.178198+08:00"> 周五, 20 九月 2019</time>
-    </span>
-
-
-            <span class="label label-default">By</span>
-            <a href="/author/zqlai.html"><i class="fa fa-user"></i> zqlai</a>
-
-        <span class="label label-default">Category</span>
-        <a href="/category/note.html">note</a>
-
-
-<span class="label label-default">Tags</span>
-	<a href="/tag/horovod-th-1a.html">horovod TH-1A</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                <div class="summary"><h2>step to launch the mnist training&nbsp;task</h2>
-<ul>
-<li>1.</li>
-</ul>
-<div class="highlight"><pre><span></span>login the th-es-ln0
+<span class="p">}</span>
 </pre></div>
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="/blog/my second post.html">test post - how to set up django on ubuntu&nbsp;18.04</a></li>
+    </ul>
+</section>
+    <hr />
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style">
+            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+            <a class="addthis_button_tweet"></a>
+            <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    </div>
+    <!-- AddThis Button END -->
+        </article>
+    </section>
 
-
-<ul>
-<li>2.</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="nb">source</span> zqlai/.bashrc
-</pre></div>
-
-
-<ul>
-<li>3.allocate 2 <span class="caps">GPU</span> nodes with 4&nbsp;processes</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="n">yhalloc</span> <span class="o">-</span><span class="n">N2</span> <span class="o">-</span><span class="n">n4</span> <span class="o">-</span><span class="n">pTH_GPU</span>
-</pre></div>
-
-
-<ul>
-<li>4.check the allocated job and responsive&nbsp;nodes</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="n">yhq</span>
-</pre></div>
-
-
-<ul>
-<li>5.load the task using&nbsp;mpirun</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="nb">cd</span> horovod
-mpirun -np <span class="m">4</span> -H gn6,gn7 …</pre></div>
-                    <a class="btn btn-default btn-xs" href="/blog/horovod works.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/blog/resnet-on-horovod-with-multi-gpus.html">resnet on horovod with multi&nbsp;GPUs</a></h2>
-                    <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2019-09-20T00:53:16.178198+08:00"> 周五, 20 九月 2019</time>
-    </span>
-
-
-            <span class="label label-default">By</span>
-            <a href="/author/zqlai.html"><i class="fa fa-user"></i> zqlai</a>
-
-        <span class="label label-default">Category</span>
-        <a href="/category/ml.html">ML</a>
-
-
-<span class="label label-default">Tags</span>
-	<a href="/tag/horovod.html">horovod</a>
-        /
-	<a href="/tag/resnet.html">resnet</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                <div class="summary"><div class="highlight"><pre><span></span><span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">15</span> <span class="mi">23</span>:<span class="mi">37</span>:<span class="mi">49</span>.<span class="mi">001918</span>: <span class="nv">I</span> <span class="nv">tensorflow</span><span class="o">/</span><span class="nv">core</span><span class="o">/</span><span class="nv">common_runtime</span><span class="o">/</span><span class="nv">gpu</span><span class="o">/</span><span class="nv">gpu_device</span>.<span class="nv">cc</span>:<span class="mi">1490</span>] <span class="nv">Adding</span> <span class="nv">visible</span> <span class="nv">gpu</span> <span class="nv">devices</span>: <span class="mi">1</span>
-<span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">15</span> <span class="mi">23</span>:<span class="mi">37</span>:<span class="mi">49</span>.<span class="mi">001953</span>: <span class="nv">I</span> <span class="nv">tensorflow</span><span class="o">/</span><span class="nv">core</span><span class="o">/</span><span class="nv">common_runtime</span><span class="o">/</span><span class="nv">gpu</span><span class="o">/</span><span class="nv">gpu_device</span>.<span class="nv">cc</span>:<span class="mi">971</span>] <span class="nv">Device</span> <span class="nv">interconnect</span> <span class="nv">StreamExecutor</span> <span class="nv">with</span> <span class="nv">strength</span> <span class="mi">1</span> <span class="nv">edge</span> <span class="nv">matrix</span>:
-<span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">15</span> <span class="mi">23</span>:<span class="mi">37</span>:<span class="mi">49</span>.<span class="mi">001960 …</span></pre></div>
-                    <a class="btn btn-default btn-xs" href="/blog/resnet-on-horovod-with-multi-gpus.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-
-        <ul class="pager">
-                <li class="previous disabled"><a href="#">&larr; Newer</a></li>
-                <li class="next"><a
-                        href="/index2.html">Older &rarr;</a></li>
-        </ul>
         </div>
         <div class="col-sm-3" id="sidebar">
             <aside>
@@ -497,5 +383,7 @@ $(document).ready(function () {
     <!-- End Google Analytics Code -->
 
 
+        <script type="text/javascript">var addthis_config = {"data_track_addressbar": true};</script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5bc35adaf039c73e"></script>
 </body>
 </html>

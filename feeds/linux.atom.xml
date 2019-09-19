@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>QBlog - Linux</title><link href="/" rel="alternate"></link><link href="/feeds/linux.atom.xml" rel="self"></link><id>/</id><updated>2019-09-20T00:53:16+08:00</updated><entry><title>setting for ssh login without password input</title><link href="/blog/setting-for-ssh-login-without-password-input.html" rel="alternate"></link><published>2019-09-20T00:53:16+08:00</published><updated>2019-09-20T00:53:16+08:00</updated><author><name>zqlai</name></author><id>tag:None,2019-09-20:/blog/setting-for-ssh-login-without-password-input.html</id><summary type="html">&lt;p&gt;just two&amp;nbsp;steps&lt;/p&gt;
+&lt;p&gt;1.generate key pairs if not&amp;nbsp;exist&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;keygen&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="n"&gt;rsa&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If success, you will find &lt;code&gt;id_rsa&lt;/code&gt; and &lt;code&gt;id_rsa.pub&lt;/code&gt; in the &lt;code&gt;~/.ssh/&lt;/code&gt; dir&lt;/p&gt;
+&lt;p&gt;2.copy the public key to the server you want to&amp;nbsp;login&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;copy&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="nv"&gt;@hostname&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then, it will authorize your permission …&lt;/p&gt;</summary><content type="html">&lt;p&gt;just two&amp;nbsp;steps&lt;/p&gt;
+&lt;p&gt;1.generate key pairs if not&amp;nbsp;exist&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;keygen&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="n"&gt;rsa&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If success, you will find &lt;code&gt;id_rsa&lt;/code&gt; and &lt;code&gt;id_rsa.pub&lt;/code&gt; in the &lt;code&gt;~/.ssh/&lt;/code&gt; dir&lt;/p&gt;
+&lt;p&gt;2.copy the public key to the server you want to&amp;nbsp;login&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;copy&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="nv"&gt;@hostname&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then, it will authorize your permission by&amp;nbsp;password.&lt;/p&gt;
+&lt;p&gt;If both steps is done, you can ssh to the server without password input.
+In the ~/.ssh/authorized_key file on the server, you will find an entry&amp;nbsp;like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;rsa&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;AAAAB3NzaC1yc2EAAAADAQABAAABAQCpwXmBPQcLBDDZxUa18bLHoL0WrCRx9KR&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="n"&gt;Dryyp4bbqq9877&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;hYQCKq9Cxvjvo6pBkQB6DdykEHnJIVKhgGGt1y85L0IYTkazM8O4Q04sj&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;RhBvscf5fOdSedRu7UVzULVccBrm1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;uzfDZQnUgDUTrmGe3ynGVU0tjxwjXay5Xj7KZJmggGKR40bQ3eZAiXGbQSDSYaF9teT1aLh6z3Z0Z&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="n"&gt;g7EtOwBWRrWoLlhgNiBF7uHi4FGlHxj2u9jcRTKzdI&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;rfTaVJZNyVuS7sSUqDl7fGyQ1XJq4AEKZg&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;wRuomKlme7aLl9Ee&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="n"&gt;Lj&lt;/span&gt;&lt;span class="o"&gt;+/&lt;/span&gt;&lt;span class="n"&gt;kpdEcRYNImJHV9CdTKYZXNIFZ&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;XX&lt;/span&gt;&lt;span class="nv"&gt;@XX&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="ssh"></category></entry></feed>
