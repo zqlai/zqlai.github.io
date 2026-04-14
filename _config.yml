@@ -23,7 +23,7 @@ repository               : "zqlai.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : # "profile.png"
+  avatar           : "profile.png"
   name             : "Zhiquan Lai (赖志权)"
   pronouns         : # example: "she/her"  
   bio              : "Ph.D. & M.S. Supervisor at NUDT"
