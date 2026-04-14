@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-"""Generate a single publications page from a DBLP-style BibTeX file."""
+"""Generate publications.md plus a local CCF matching audit report."""
 
 from __future__ import annotations
 
@@ -19,6 +19,7 @@ CCF_URL = "https://ccf.atom.im/"
 AUTHOR_TO_HIGHLIGHT = "Zhiquan Lai"
 KEEP_RANKS = {"A", "B"}
 DEFAULT_CACHE_NAME = "ccf_atom_cache.json"
+DEFAULT_REPORT_NAME = "publications_ccf_match_report.md"
 VENUE_TYPE_CONF = "conference"
 VENUE_TYPE_JOURNAL = "journal"
 WHITESPACE_RE = re.compile(r"\s+")
@@ -32,6 +33,29 @@ NON_MAIN_CONF_MARKERS = (
     "companion",
     "extended abstract",
 )
+CCF_CONF_TYPE_ALIASES = {
+    VENUE_TYPE_CONF,
+    "会议",
+    "浼氳",
+    "æµ¼æ°³î†…",
+}
+CCF_JOURNAL_TYPE_ALIASES = {
+    VENUE_TYPE_JOURNAL,
+    "期刊",
+    "鏈熷垔",
+    "éˆç†·åž”",
+}
+CCF_ABBR_ALIASES = {
+    "fcsc": "fcs",
+    "chinaf": "scis",
+    "pkdd": "ecmlpkdd",
+}
+CCF_VENUE_TEXT_ALIASES = {
+    "frontierscomputsci": "fcs",
+    "sciencechinainformationsciences": "scis",
+    "scichinainfsci": "scis",
+    "ecmlpkdd": "ecmlpkdd",
+}
 
 
 @dataclass
@@ -46,6 +70,23 @@ class CCFVenue:
 class MatchResult:
     venue: CCFVenue | None
     method: str
+    raw_venue: str
+    candidate_abbrs: list[str]
+
+
+@dataclass
+class AuditRecord:
+    venue_type: str
+    year: str
+    title: str
+    bib_id: str
+    raw_venue: str
+    decision: str
+    matched_abbr: str
+    matched_name: str
+    matched_rank: str
+    match_method: str
+    candidate_abbrs: str
 
 
 class TableRowParser(HTMLParser):
@@ -84,7 +125,7 @@ class TableRowParser(HTMLParser):
 def parse_args() -> argparse.Namespace:
     script_dir = Path(__file__).resolve().parent
     parser = argparse.ArgumentParser(
-        description="Generate _pages/publications.md from a BibTeX file."
+        description="Generate _pages/publications.md and a local CCF audit report."
     )
     parser.add_argument(
         "bib_file",
@@ -95,7 +136,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--output",
         default=str(script_dir.parent / "_pages" / "publications.md"),
-        help="Output markdown path.",
+        help="Output markdown path for the website page.",
+    )
+    parser.add_argument(
+        "--report",
+        default=str(script_dir / DEFAULT_REPORT_NAME),
+        help="Output markdown path for the local CCF audit report.",
     )
     parser.add_argument(
         "--cache",
@@ -134,10 +180,9 @@ def normalize_ccf_venue_type(value: str) -> str | None:
     value = normalize_space(value)
     if not value:
         return None
-
-    if value in {VENUE_TYPE_CONF, "会议", "浼氳", "æµ¼æ°³î†…"}:
+    if value in CCF_CONF_TYPE_ALIASES:
         return VENUE_TYPE_CONF
-    if value in {VENUE_TYPE_JOURNAL, "期刊", "鏈熷垔", "éˆç†·åž”"}:
+    if value in CCF_JOURNAL_TYPE_ALIASES:
         return VENUE_TYPE_JOURNAL
 
     lowered = value.lower()
@@ -306,6 +351,13 @@ def parse_ccf_venues(html_text: str) -> list[CCFVenue]:
     return venues
 
 
+def save_ccf_cache(cache_path: Path, venues: list[CCFVenue]) -> None:
+    cache_path.write_text(
+        json.dumps([venue.__dict__ for venue in venues], ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
+
 def load_ccf_cache(cache_path: Path) -> list[CCFVenue]:
     data = json.loads(cache_path.read_text(encoding="utf-8"))
     venues: list[CCFVenue] = []
@@ -322,7 +374,7 @@ def load_ccf_cache(cache_path: Path) -> list[CCFVenue]:
             CCFVenue(
                 abbr=str(item.get("abbr", "")),
                 name=str(item.get("name", "")),
-                rank=str(item.get("rank", "")),
+                rank=str(item.get("rank", "")).upper(),
                 venue_type=venue_type,
             )
         )
@@ -331,13 +383,6 @@ def load_ccf_cache(cache_path: Path) -> list[CCFVenue]:
         save_ccf_cache(cache_path, venues)
 
     return venues
-
-
-def save_ccf_cache(cache_path: Path, venues: list[CCFVenue]) -> None:
-    cache_path.write_text(
-        json.dumps([venue.__dict__ for venue in venues], ensure_ascii=False, indent=2),
-        encoding="utf-8",
-    )
 
 
 def get_ccf_venues(cache_path: Path, refresh: bool) -> list[CCFVenue]:
@@ -388,6 +433,35 @@ def is_main_published_entry(entry: dict[str, object]) -> bool:
     return False
 
 
+def get_non_main_reason(entry: dict[str, object]) -> str:
+    venue_type = classify_entry(entry["bib_id"])  # type: ignore[index]
+    fields = entry["fields"]  # type: ignore[assignment]
+
+    if venue_type == VENUE_TYPE_JOURNAL:
+        journal = clean_bib_text(fields.get("journal", ""))
+        if not journal:
+            return "missing journal field"
+        if normalize_key(journal) == "corr":
+            return "preprint venue (CoRR)"
+        return "journal excluded by publication filter"
+
+    if venue_type == VENUE_TYPE_CONF:
+        combined = " ".join(
+            [
+                clean_bib_text(fields.get("booktitle", "")),
+                clean_bib_text(fields.get("title", "")),
+            ]
+        ).lower()
+        for marker in NON_MAIN_CONF_MARKERS:
+            if marker in combined:
+                return f"auxiliary conference publication ({marker})"
+        if not clean_bib_text(fields.get("booktitle", "")):
+            return "missing booktitle field"
+        return "conference excluded by publication filter"
+
+    return "unsupported entry type"
+
+
 def extract_venue_code(bib_id: str) -> str:
     parts = bib_id.split("/")
     return parts[1] if len(parts) >= 2 else ""
@@ -400,6 +474,9 @@ def extract_candidate_abbrs(entry: dict[str, object], ccf_abbr_keys: set[str]) -
     venue_code = normalize_key(extract_venue_code(entry["bib_id"]))  # type: ignore[index]
     if venue_code:
         candidates.append(venue_code)
+        alias = CCF_ABBR_ALIASES.get(venue_code)
+        if alias and alias in ccf_abbr_keys and alias not in candidates:
+            candidates.append(alias)
 
     venue_text = clean_bib_text(fields.get("booktitle") or fields.get("journal") or "")
     text_patterns = re.findall(r"\b[A-Za-z0-9]+(?:[-/ ][A-Za-z0-9]+)*\b", venue_text)
@@ -407,6 +484,14 @@ def extract_candidate_abbrs(entry: dict[str, object], ccf_abbr_keys: set[str]) -
         key = normalize_key(pattern)
         if key and key in ccf_abbr_keys and key not in candidates:
             candidates.append(key)
+        alias = CCF_ABBR_ALIASES.get(key)
+        if alias and alias in ccf_abbr_keys and alias not in candidates:
+            candidates.append(alias)
+
+    normalized_venue_text = normalize_key(venue_text)
+    for key, alias in CCF_VENUE_TEXT_ALIASES.items():
+        if key in normalized_venue_text and alias in ccf_abbr_keys and alias not in candidates:
+            candidates.append(alias)
 
     if "ipdps" in normalize_key(venue_text) and "ipdps" not in candidates:
         candidates.append("ipdps")
@@ -447,8 +532,9 @@ def choose_best_name_match(venue_text: str, candidates: list[CCFVenue]) -> CCFVe
 
 def match_ccf_venue(entry: dict[str, object], venues: list[CCFVenue]) -> MatchResult:
     venue_type = classify_entry(entry["bib_id"])  # type: ignore[index]
+    raw_venue = get_entry_venue_text(entry)
     if venue_type is None:
-        return MatchResult(None, "unsupported-entry-type")
+        return MatchResult(None, "unsupported-entry-type", raw_venue, [])
 
     filtered = [venue for venue in venues if venue.venue_type == venue_type]
     abbr_map: dict[str, list[CCFVenue]] = {}
@@ -461,13 +547,12 @@ def match_ccf_venue(entry: dict[str, object], venues: list[CCFVenue]) -> MatchRe
     for candidate in candidate_abbrs:
         if candidate in abbr_map:
             ranked = sorted(abbr_map[candidate], key=lambda item: item.rank)
-            return MatchResult(ranked[0], f"abbr:{candidate}")
+            return MatchResult(ranked[0], f"abbr:{candidate}", raw_venue, candidate_abbrs)
 
-    raw_venue = get_entry_venue_text(entry)
     venue_text = raw_venue if venue_type == VENUE_TYPE_JOURNAL else simplify_conf_venue(raw_venue)
     venue = choose_best_name_match(venue_text, filtered)
     method = "name-similarity" if venue is not None else "unmatched"
-    return MatchResult(venue, method)
+    return MatchResult(venue, method, raw_venue, candidate_abbrs)
 
 
 def split_authors(author_field: str) -> list[str]:
@@ -538,9 +623,108 @@ def render_section(title: str, entries: list[str]) -> list[str]:
     return lines
 
 
-def generate_output(
+def build_audit_record(
+    entry: dict[str, object],
+    decision: str,
+    match_result: MatchResult | None = None,
+) -> AuditRecord:
+    fields = entry["fields"]  # type: ignore[assignment]
+    venue_type = classify_entry(entry["bib_id"])  # type: ignore[index]
+    matched = match_result.venue if match_result is not None else None
+    return AuditRecord(
+        venue_type=venue_type or "unknown",
+        year=clean_bib_text(fields.get("year", "")),
+        title=clean_bib_text(fields.get("title", "")),
+        bib_id=str(entry["bib_id"]),
+        raw_venue=(match_result.raw_venue if match_result is not None else get_entry_venue_text(entry)),
+        decision=decision,
+        matched_abbr=matched.abbr if matched is not None else "",
+        matched_name=matched.name if matched is not None else "",
+        matched_rank=matched.rank if matched is not None else "",
+        match_method=match_result.method if match_result is not None else "",
+        candidate_abbrs=", ".join(match_result.candidate_abbrs) if match_result is not None else "",
+    )
+
+
+def audit_sort_key(record: AuditRecord) -> tuple[int, str]:
+    try:
+        year_value = int(record.year)
+    except ValueError:
+        year_value = 0
+    return (-year_value, record.title.lower())
+
+
+def render_audit_item(record: AuditRecord) -> list[str]:
+    lines = [
+        f"- [{record.venue_type}] {record.year} | {record.title}",
+        f"  bib_id: `{record.bib_id}`",
+    ]
+
+    if record.raw_venue:
+        lines.append(f"  raw venue: `{record.raw_venue}`")
+
+    if record.matched_abbr or record.matched_name:
+        lines.append(
+            f"  matched CCF: `{record.matched_abbr}` | {record.matched_name} | "
+            f"rank `{record.matched_rank}` via `{record.match_method}`"
+        )
+    else:
+        lines.append(f"  matched CCF: none ({record.match_method or 'no-match'})")
+
+    if record.candidate_abbrs:
+        lines.append(f"  extracted candidates: `{record.candidate_abbrs}`")
+
+    lines.append(f"  decision: {record.decision}")
+    return lines
+
+
+def render_audit_section(title: str, records: list[AuditRecord]) -> list[str]:
+    lines = [f"## {title}", ""]
+    if not records:
+        lines.append("- None")
+        lines.append("")
+        return lines
+
+    for record in sorted(records, key=audit_sort_key):
+        lines.extend(render_audit_item(record))
+    lines.append("")
+    return lines
+
+
+def generate_report(
+    report_path: Path,
+    bib_path: Path,
+    records_by_section: dict[str, list[AuditRecord]],
+) -> None:
+    lines = [
+        "# CCF Match Report",
+        "",
+        f"Source bib: `{bib_path.name}`",
+        "",
+        "## Summary",
+        "",
+        f"- Included in publications page: {len(records_by_section['included'])}",
+        f"- Excluded as non-main / preprint: {len(records_by_section['filtered_non_main'])}",
+        f"- Excluded because matched venue is not CCF A/B: {len(records_by_section['filtered_rank'])}",
+        f"- Excluded because no CCF venue match was found: {len(records_by_section['unmatched'])}",
+        f"- Excluded because bib_id could not be classified: {len(records_by_section['unsupported'])}",
+        "",
+    ]
+
+    lines.extend(render_audit_section("Included In Publications Page", records_by_section["included"]))
+    lines.extend(render_audit_section("Excluded: Non-main / Preprint", records_by_section["filtered_non_main"]))
+    lines.extend(render_audit_section("Excluded: Matched Venue But Not CCF A/B", records_by_section["filtered_rank"]))
+    lines.extend(render_audit_section("Excluded: No CCF Match", records_by_section["unmatched"]))
+    lines.extend(render_audit_section("Excluded: Unsupported bib_id", records_by_section["unsupported"]))
+
+    report_path.parent.mkdir(parents=True, exist_ok=True)
+    report_path.write_text("\n".join(lines), encoding="utf-8")
+
+
+def generate_outputs(
     bib_path: Path,
     output_path: Path,
+    report_path: Path,
     cache_path: Path,
     refresh_ccf: bool,
 ) -> None:
@@ -549,14 +733,43 @@ def generate_output(
 
     selected_conferences: list[tuple[dict[str, object], str]] = []
     selected_journals: list[tuple[dict[str, object], str]] = []
+    records_by_section: dict[str, list[AuditRecord]] = {
+        "included": [],
+        "filtered_non_main": [],
+        "filtered_rank": [],
+        "unmatched": [],
+        "unsupported": [],
+    }
 
     for entry in entries:
         venue_type = classify_entry(entry["bib_id"])  # type: ignore[index]
-        if venue_type is None or not is_main_published_entry(entry):
+        if venue_type is None:
+            records_by_section["unsupported"].append(
+                build_audit_record(entry, "unsupported bib_id prefix")
+            )
+            continue
+
+        if not is_main_published_entry(entry):
+            records_by_section["filtered_non_main"].append(
+                build_audit_record(entry, get_non_main_reason(entry))
+            )
             continue
 
         match_result = match_ccf_venue(entry, ccf_venues)
-        if match_result.venue is None or match_result.venue.rank not in KEEP_RANKS:
+        if match_result.venue is None:
+            records_by_section["unmatched"].append(
+                build_audit_record(entry, "no CCF venue match found", match_result)
+            )
+            continue
+
+        if match_result.venue.rank not in KEEP_RANKS:
+            records_by_section["filtered_rank"].append(
+                build_audit_record(
+                    entry,
+                    f"matched CCF {match_result.venue.rank}, not kept",
+                    match_result,
+                )
+            )
             continue
 
         line = format_entry(entry, match_result.venue)
@@ -564,6 +777,14 @@ def generate_output(
             selected_conferences.append((entry, line))
         else:
             selected_journals.append((entry, line))
+
+        records_by_section["included"].append(
+            build_audit_record(
+                entry,
+                f"included as CCF {match_result.venue.rank}",
+                match_result,
+            )
+        )
 
     selected_conferences.sort(key=lambda item: entry_sort_key(item[0]))
     selected_journals.sort(key=lambda item: entry_sort_key(item[0]))
@@ -587,17 +808,20 @@ def generate_output(
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text("\n".join(lines), encoding="utf-8")
+    generate_report(report_path, bib_path, records_by_section)
 
 
 def main() -> int:
     args = parse_args()
-    generate_output(
+    generate_outputs(
         bib_path=Path(args.bib_file).resolve(),
         output_path=Path(args.output).resolve(),
+        report_path=Path(args.report).resolve(),
         cache_path=Path(args.cache).resolve(),
         refresh_ccf=args.refresh_ccf,
     )
     print(f"Generated {Path(args.output).resolve()}")
+    print(f"Generated {Path(args.report).resolve()}")
     return 0
 
 
