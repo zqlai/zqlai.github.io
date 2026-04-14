@@ -9,7 +9,7 @@ redirect_from:
 
 {% include base_path %}
 
-I am a Ph.D. & M.S. Supervisor at the College of Computer, National University of Defense Technology (NUDT).
+I am a Ph.D. & M.S. Supervisor at the College of Computer Science and Technology, National University of Defense Technology (NUDT).
 I received the Ph.D, M.S. and B.S. degrees in Computer Science from National University of Defense Technology (NUDT) in 2015, 2010 and 2008 respectively.
 I worked as a research assistant at Department of Computer Science, the University of Hong Kong during Oct. 2012 to Oct. 2013. 
 
