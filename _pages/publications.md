@@ -11,6 +11,7 @@ author_profile: true
 
 ## Selected Conference Papers
 
+- Shengwei Li, Qiaoling Chen, **Zhiquan Lai**, Penglong Jiao, Wenwen Qu, Kun Cai, Jiaxing Li, Peng Sun, Xingcheng Zhang, Xiaoge Deng, Dongsheng Li, Kai Lu, Tianwei Zhang. "Di-PS: System-Algorithm Co-Design for Asynchronous and Heterogeneous Cross-cluster LLM Training at Scale." NSDI 2026 (**CCF A**). [[Paper]](https://www.usenix.org/conference/nsdi26/presentation/li-shengwei)
 - Weijie Liu, Shengwei Li, **Zhiquan Lai**, Keshi Ge, Qiaoling Chen, Peng Sun, Dongsheng Li, Kai Lu. "AdaCheck: An Adaptive Checkpointing System for Efficient LLM Training with Redundancy Utilization." FAST 2026 (**CCF A**). [[Paper]](https://www.usenix.org/conference/fast26/presentation/liu-weijie)
 - Wenqian Xie, **Zhiquan Lai**, Shengwei Li, Weijie Liu, Wei Wang, Yanqi Hao, Dongsheng Li. "Capricorn: Efficient In-Memory Checkpointing for MoE Model Training with Dynamicity Awareness." CLUSTER 2025 (**CCF B**). [[Paper]](https://doi.org/10.1109/CLUSTER59342.2025.11186488)
 - Lizhi Zhang, Menghan Jia, **Zhiquan Lai**, Qiao Li, Yiming Zhang, Dongsheng Li. "HMGraph: Boosting GNN Training on Hierarchical Memory via Coordinated Cache." ICPP 2025 (**CCF B**). [[Paper]](https://doi.org/10.1145/3754598.3754630)
